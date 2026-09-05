@@ -96,51 +96,51 @@ class HubitViewModel(application: Application) : AndroidViewModel(application) {
         // Seed initial items if DB is empty
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                // Only seed if empty
-                val demoList = listOf(
-                    HubItemEntity(
-                        title = "Kiem_Hiep_3D_v2.4.apk",
-                        type = "APK",
-                        pathOrUrl = "/storage/emulated/0/Download/Hubit/Kiem_Hiep_3D_v2.4.apk",
-                        fileSize = 48500000L,
-                        receivedSource = "WEB_DASHBOARD",
-                        status = "COMPLETED"
-                    ),
-                    HubItemEntity(
-                        title = "Trailer_Phim_Bom_Tan_4K.mp4",
-                        type = "VIDEO",
-                        pathOrUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-                        fileSize = 158000000L,
-                        receivedSource = "DOWNLOADER",
-                        status = "COMPLETED"
-                    ),
-                    HubItemEntity(
-                        title = "VTV1 HD (Kênh Tin Tức)",
-                        type = "IPTV",
-                        pathOrUrl = "https://play.contentvn.com/live/vtv1/index.m3u8",
-                        fileSize = 0L,
-                        receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv1_logo.png",
-                        status = "COMPLETED"
-                    ),
-                    HubItemEntity(
-                        title = "VTV3 HD (Kênh Giải Trí)",
-                        type = "IPTV",
-                        pathOrUrl = "https://play.contentvn.com/live/vtv3/index.m3u8",
-                        fileSize = 0L,
-                        receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv3_logo.png",
-                        status = "COMPLETED"
-                    ),
-                    HubItemEntity(
-                        title = "VTV6 HD (Kênh Thể Thao)",
-                        type = "IPTV",
-                        pathOrUrl = "https://play.contentvn.com/live/vtv6/index.m3u8",
-                        fileSize = 0L,
-                        receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv6_logo.png",
-                        status = "COMPLETED"
+                if (dao.getItemCount() == 0) {
+                    val demoList = listOf(
+                        HubItemEntity(
+                            title = "Kiem_Hiep_3D_v2.4.apk",
+                            type = "APK",
+                            pathOrUrl = "/storage/emulated/0/Download/Hubit/Kiem_Hiep_3D_v2.4.apk",
+                            fileSize = 48500000L,
+                            receivedSource = "WEB_DASHBOARD",
+                            status = "COMPLETED"
+                        ),
+                        HubItemEntity(
+                            title = "Trailer_Phim_Bom_Tan_4K.mp4",
+                            type = "VIDEO",
+                            pathOrUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                            fileSize = 158000000L,
+                            receivedSource = "DOWNLOADER",
+                            status = "COMPLETED"
+                        ),
+                        HubItemEntity(
+                            title = "VTV1 HD (Kênh Tin Tức)",
+                            type = "IPTV",
+                            pathOrUrl = "https://play.contentvn.com/live/vtv1/index.m3u8",
+                            fileSize = 0L,
+                            receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv1_logo.png",
+                            status = "COMPLETED"
+                        ),
+                        HubItemEntity(
+                            title = "VTV3 HD (Kênh Giải Trí)",
+                            type = "IPTV",
+                            pathOrUrl = "https://play.contentvn.com/live/vtv3/index.m3u8",
+                            fileSize = 0L,
+                            receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv3_logo.png",
+                            status = "COMPLETED"
+                        ),
+                        HubItemEntity(
+                            title = "VTV6 HD (Kênh Thể Thao)",
+                            type = "IPTV",
+                            pathOrUrl = "https://play.contentvn.com/live/vtv6/index.m3u8",
+                            fileSize = 0L,
+                            receivedSource = "IPTV|VTV|https://img.upanh.tv/2023/11/02/vtv6_logo.png",
+                            status = "COMPLETED"
+                        )
                     )
-                )
-                // Check if already seeded, if not, insert
-                demoList.forEach { dao.insertItem(it) }
+                    demoList.forEach { dao.insertItem(it) }
+                }
             }
         }
     }

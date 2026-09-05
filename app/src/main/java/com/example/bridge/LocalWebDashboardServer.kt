@@ -3,11 +3,11 @@ package com.example.bridge
 import android.content.Context
 import android.os.Environment
 import android.util.Log
-import java.io.BufferedReader
+import java.io.BufferedInputStream
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
-import java.io.InputStreamReader
 import java.io.OutputStream
 import java.net.ServerSocket
 import java.net.Socket
@@ -69,27 +69,32 @@ class LocalWebDashboardServer(
     private fun handleClient(socket: Socket) {
         try {
             socket.use { s ->
-                val input = s.getInputStream()
+                val input = BufferedInputStream(s.getInputStream())
                 val output = s.getOutputStream()
 
-                val reader = BufferedReader(InputStreamReader(input, Charsets.UTF_8))
-                val firstLine = reader.readLine() ?: return
+                // Read HTTP Header bytes up to \r\n\r\n
+                val headerBytes = readHeaderBytes(input) ?: return
+                val headerText = String(headerBytes, Charsets.UTF_8)
+                val lines = headerText.split("\r\n")
+                if (lines.isEmpty()) return
+
+                val firstLine = lines[0]
                 val parts = firstLine.split(" ")
                 if (parts.size < 2) return
 
                 val method = parts[0].uppercase()
                 val path = parts[1]
 
-                // Read headers
+                // Parse headers
                 val headers = mutableMapOf<String, String>()
-                var line: String?
-                while (reader.readLine().also { line = it } != null) {
-                    if (line.isNullOrEmpty()) break
-                    val colonIdx = line!!.indexOf(":")
+                for (i in 1 until lines.size) {
+                    val line = lines[i]
+                    if (line.isEmpty()) continue
+                    val colonIdx = line.indexOf(":")
                     if (colonIdx > 0) {
-                        val headerName = line!!.substring(0, colonIdx).trim().lowercase()
-                        val headerValue = line!!.substring(colonIdx + 1).trim()
-                        headers[headerName] = headerValue
+                        val name = line.substring(0, colonIdx).trim().lowercase()
+                        val value = line.substring(colonIdx + 1).trim()
+                        headers[name] = value
                     }
                 }
 
@@ -110,8 +115,8 @@ class LocalWebDashboardServer(
                         handleUpload(headers, input, output)
                     }
                     method == "POST" && path == "/api/url" -> {
-                        val body = readBody(headers, reader)
-                        val url = extractParam(body, "url") ?: body.trim()
+                        val body = readBodyString(headers, input)
+                        val url = parsePayloadValue(body, "url")
                         if (url.isNotEmpty()) {
                             onUrlReceived(url)
                             sendJsonResponse(output, 200, """{"status":"success","url":"$url"}""")
@@ -120,8 +125,8 @@ class LocalWebDashboardServer(
                         }
                     }
                     method == "POST" && path == "/api/clipboard" -> {
-                        val body = readBody(headers, reader)
-                        val text = extractParam(body, "text") ?: body.trim()
+                        val body = readBodyString(headers, input)
+                        val text = parsePayloadValue(body, "text")
                         if (text.isNotEmpty()) {
                             onClipboardReceived(text)
                             sendJsonResponse(output, 200, """{"status":"success","text":"$text"}""")
@@ -130,8 +135,8 @@ class LocalWebDashboardServer(
                         }
                     }
                     method == "POST" && path == "/api/remote" -> {
-                        val body = readBody(headers, reader)
-                        val key = extractParam(body, "key") ?: body.trim()
+                        val body = readBodyString(headers, input)
+                        val key = parsePayloadValue(body, "key")
                         if (key.isNotEmpty()) {
                             onRemoteKey(key)
                             sendJsonResponse(output, 200, """{"status":"success","key":"$key"}""")
@@ -149,6 +154,29 @@ class LocalWebDashboardServer(
         }
     }
 
+    private fun readHeaderBytes(input: InputStream): ByteArray? {
+        val baos = ByteArrayOutputStream()
+        var matchCount = 0
+        val maxHeaderSize = 65536 // 64 KB safety limit
+        while (baos.size() < maxHeaderSize) {
+            val b = input.read()
+            if (b == -1) {
+                if (baos.size() == 0) return null
+                break
+            }
+            baos.write(b)
+            if ((matchCount == 0 || matchCount == 2) && b == '\r'.code) {
+                matchCount++
+            } else if ((matchCount == 1 || matchCount == 3) && b == '\n'.code) {
+                matchCount++
+                if (matchCount == 4) break
+            } else {
+                matchCount = if (b == '\r'.code) 1 else 0
+            }
+        }
+        return baos.toByteArray()
+    }
+
     private fun handleUpload(headers: Map<String, String>, input: InputStream, output: OutputStream) {
         try {
             val targetDir = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Hubit")
@@ -156,17 +184,23 @@ class LocalWebDashboardServer(
 
             val filenameHeader = headers["x-file-name"]
             val fileName = if (!filenameHeader.isNullOrEmpty()) {
-                URLDecoder.decode(filenameHeader, "UTF-8")
+                try {
+                    URLDecoder.decode(filenameHeader, "UTF-8")
+                } catch (e: Exception) {
+                    filenameHeader
+                }
             } else {
                 "Hubit_Received_${System.currentTimeMillis()}.bin"
             }
 
-            val outputFile = File(targetDir, fileName)
+            // Sanitize file name
+            val safeFileName = fileName.replace(Regex("[\\\\/:*?\"<>|]"), "_")
+            val outputFile = File(targetDir, safeFileName)
             val contentLength = headers["content-length"]?.toLongOrNull() ?: -1L
             var bytesReadTotal = 0L
 
             FileOutputStream(outputFile).use { fos ->
-                val buffer = ByteArray(8192)
+                val buffer = ByteArray(32768)
                 var read: Int
                 if (contentLength > 0) {
                     var remaining = contentLength
@@ -184,27 +218,52 @@ class LocalWebDashboardServer(
                         bytesReadTotal += read
                     }
                 }
+                fos.flush()
             }
 
-            onFileReceived(fileName, outputFile.absolutePath, bytesReadTotal)
-            sendJsonResponse(output, 200, """{"status":"success","message":"File uploaded successfully","file":"$fileName"}""")
+            onFileReceived(safeFileName, outputFile.absolutePath, bytesReadTotal)
+            sendJsonResponse(output, 200, """{"status":"success","message":"File uploaded successfully","file":"$safeFileName"}""")
         } catch (e: Exception) {
             Log.e("HubitServer", "Upload error", e)
             sendJsonResponse(output, 500, """{"status":"error","message":"${e.localizedMessage}"}""")
         }
     }
 
-    private fun readBody(headers: Map<String, String>, reader: BufferedReader): String {
+    private fun readBodyString(headers: Map<String, String>, input: InputStream): String {
         val contentLength = headers["content-length"]?.toIntOrNull() ?: 0
         if (contentLength <= 0) return ""
-        val charBuffer = CharArray(contentLength)
+        val bytes = ByteArray(contentLength)
         var totalRead = 0
         while (totalRead < contentLength) {
-            val read = reader.read(charBuffer, totalRead, contentLength - totalRead)
+            val read = input.read(bytes, totalRead, contentLength - totalRead)
             if (read == -1) break
             totalRead += read
         }
-        return String(charBuffer, 0, totalRead)
+        return String(bytes, 0, totalRead, Charsets.UTF_8)
+    }
+
+    private fun parsePayloadValue(body: String, key: String): String {
+        val trimmed = body.trim()
+        // Check JSON format: {"key": "value"}
+        val jsonPattern = Regex("\"$key\"\\s*:\\s*\"([^\"]*)\"")
+        val match = jsonPattern.find(trimmed)
+        if (match != null) {
+            return match.groupValues[1]
+        }
+        // Check URL-encoded format: key=value
+        if (trimmed.contains("$key=")) {
+            val parts = trimmed.split("&")
+            for (p in parts) {
+                if (p.startsWith("$key=")) {
+                    return try {
+                        URLDecoder.decode(p.substring(key.length + 1), "UTF-8")
+                    } catch (e: Exception) {
+                        p.substring(key.length + 1)
+                    }
+                }
+            }
+        }
+        return if (!trimmed.startsWith("{") && !trimmed.contains("=")) trimmed else ""
     }
 
     private fun sendHeaders(output: OutputStream, status: Int, contentType: String, contentLength: Long) {
@@ -227,21 +286,8 @@ class LocalWebDashboardServer(
         output.flush()
     }
 
-    private fun extractParam(body: String, paramName: String): String? {
-        if (body.contains("$paramName=")) {
-            val parts = body.split("&")
-            for (p in parts) {
-                if (p.startsWith("$paramName=")) {
-                    return URLDecoder.decode(p.substring(paramName.length + 1), "UTF-8")
-                }
-            }
-        }
-        return null
-    }
-
     private fun getWebDashboardHtml(): String {
-        return """
-<!DOCTYPE html>
+        return """<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -270,6 +316,8 @@ class LocalWebDashboardServer(
         .btn-remote { background: #1e293b; color: #f8fafc; border: 1px solid #334155; height: 54px; border-radius: 12px; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
         .btn-remote:active { background: #00e5ff; color: #000; }
         .status-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: #fff; padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 100; }
+        .progress-bar-container { display: none; margin-top: 12px; background: #1e293b; border-radius: 8px; overflow: hidden; height: 8px; }
+        .progress-bar-fill { background: #00e5ff; height: 100%; width: 0%; transition: width 0.2s; }
     </style>
 </head>
 <body>
@@ -287,6 +335,9 @@ class LocalWebDashboardServer(
             <div class="drop-subtext">Hỗ trợ file APK, Video, Phim 4K, Nhạc, Nhận tức thì</div>
         </div>
         <input type="file" id="fileInput" onchange="uploadSelectedFile(this.files[0])">
+        <div class="progress-bar-container" id="uploadProgressContainer">
+            <div class="progress-bar-fill" id="uploadProgressBar"></div>
+        </div>
     </div>
 
     <!-- Link Downloader -->
@@ -334,71 +385,115 @@ class LocalWebDashboardServer(
             t.innerText = msg;
             t.style.background = isError ? '#f43f5e' : '#10b981';
             t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 2500);
+            setTimeout(() => { t.style.display = 'none'; }, 3000);
         }
 
         function uploadSelectedFile(file) {
             if (!file) return;
-            showToast('Đang tải lên: ' + file.name + '...');
-            
-            fetch('/api/upload', {
-                method: 'POST',
-                headers: {
-                    'X-File-Name': encodeURIComponent(file.name),
-                    'Content-Type': 'application/octet-stream'
-                },
-                body: file
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showToast('✅ Đã gửi file thành công lên TV!');
-                } else {
-                    showToast('❌ Thất bại: ' + data.message, true);
+            const progressContainer = document.getElementById('uploadProgressContainer');
+            const progressBar = document.getElementById('uploadProgressBar');
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            showToast('Đang gửi: ' + file.name);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/upload', true);
+            xhr.setRequestHeader('X-File-Name', encodeURIComponent(file.name));
+            xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    const percent = Math.round((e.loaded / e.total) * 100);
+                    progressBar.style.width = percent + '%';
                 }
-            })
-            .catch(err => showToast('❌ Lỗi kết nối: ' + err, true));
+            };
+
+            xhr.onload = function() {
+                progressContainer.style.display = 'none';
+                if (xhr.status === 200) {
+                    showToast('✅ Đã gửi xong: ' + file.name);
+                } else {
+                    showToast('❌ Lỗi gửi file', true);
+                }
+                document.getElementById('fileInput').value = '';
+            };
+
+            xhr.onerror = function() {
+                progressContainer.style.display = 'none';
+                showToast('❌ Mất kết nối tới TV', true);
+                document.getElementById('fileInput').value = '';
+            };
+
+            xhr.send(file);
         }
 
         function sendUrl() {
             const input = document.getElementById('urlInput');
-            const url = input.value.trim();
-            if (!url) return;
-            fetch('/api/url', { method: 'POST', body: 'url=' + encodeURIComponent(url) })
-            .then(r => r.json())
-            .then(d => {
-                showToast('🚀 Đã lệnh cho TV bắt đầu tải link!');
+            const val = input.value.trim();
+            if (!val) return;
+            showToast('Đang gửi link tải tới TV...');
+            fetch('/api/url', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: val })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast('✅ TV đã nhận lệnh tải!');
                 input.value = '';
-            });
+            })
+            .catch(() => showToast('❌ Gửi link thất bại', true));
         }
 
         function sendClipboard() {
             const input = document.getElementById('clipboardInput');
-            const txt = input.value.trim();
-            if (!txt) return;
-            fetch('/api/clipboard', { method: 'POST', body: 'text=' + encodeURIComponent(txt) })
-            .then(r => r.json())
-            .then(d => {
-                showToast('📋 Đã dán vào clipboard TV!');
+            const val = input.value.trim();
+            if (!val) return;
+            showToast('Đang đồng bộ Clipboard...');
+            fetch('/api/clipboard', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: val })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast('📋 Đã dán vào TV!');
                 input.value = '';
-            });
+            })
+            .catch(() => showToast('❌ Gửi Clipboard thất bại', true));
         }
 
         function sendRemote(key) {
-            fetch('/api/remote', { method: 'POST', body: 'key=' + key });
+            fetch('/api/remote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key: key })
+            }).catch(() => {});
         }
 
-        // Drag & Drop
-        const dz = document.getElementById('dropZone');
-        ['dragenter', 'dragover'].forEach(e => dz.addEventListener(e, (ev) => { ev.preventDefault(); dz.classList.add('active'); }));
-        ['dragleave', 'drop'].forEach(e => dz.addEventListener(e, (ev) => { ev.preventDefault(); dz.classList.remove('active'); }));
-        dz.addEventListener('drop', (ev) => {
-            const dt = ev.dataTransfer;
-            if (dt.files && dt.files.length > 0) uploadSelectedFile(dt.files[0]);
+        // Drag and drop handlers
+        const dropZone = document.getElementById('dropZone');
+        ['dragenter', 'dragover'].forEach(name => {
+            dropZone.addEventListener(name, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('active');
+            }, false);
+        });
+        ['dragleave', 'drop'].forEach(name => {
+            dropZone.addEventListener(name, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('active');
+            }, false);
+        });
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                uploadSelectedFile(files[0]);
+            }
         });
     </script>
 </body>
-</html>
-        """.trimIndent()
+</html>"""
     }
 }

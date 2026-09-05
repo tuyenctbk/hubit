@@ -24,6 +24,9 @@ interface HubItemDao {
     @Query("SELECT * FROM hub_items WHERE id = :id LIMIT 1")
     suspend fun getItemById(id: Int): HubItemEntity?
 
+    @Query("SELECT COUNT(*) FROM hub_items")
+    suspend fun getItemCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(item: HubItemEntity): Long
 
