@@ -1,0 +1,900 @@
+﻿Language Code,Language Name,App Title (<= 30 chars),Short Description (<= 80 chars),Full Description (<= 4000 chars)
+en-US,English (United States),Hubit: TV Files & Web Bridge,"Transfer files, download links, manage apps and optimize your Android TV.","Hubit! is an all-in-one file transfer, download manager, media organizer, and system optimizer tailored specifically for Android TV and Google TV devices.
+
+Transfer files, APKs, videos, and clipboard links seamlessly from any mobile phone or computer directly to your television across your local Wi-Fi network without requiring cables, cloud accounts, or USB drives.
+
+KEY FEATURES:
+
+1. THE BRIDGE – SEAMLESS LOCAL FILE & CLIPBOARD TRANSFER
+• Built-in Web Server: Open the displayed IP or scan the QR code from any smartphone, tablet, or PC to instantly upload files to your TV.
+• Real-time Universal Clipboard: Send long text, passwords, and URLs from your phone to your TV effortlessly.
+• 100% Private & Local: All transfers remain inside your home Wi-Fi network with zero cloud storage involved.
+
+2. THE FETCHER – ACCELERATED DOWNLOAD MANAGER & TV BROWSER
+• Multi-Thread Download Engine: Download APKs, videos, documents, and archives with accelerated multi-connection streams.
+• TV-Optimized Web Browser: Navigate websites with remote-friendly D-pad controls and built-in ad blocking.
+• Smart Media Sniffer: Automatically detects downloadable video and audio streams while browsing.
+• Task Management: Pause, resume, retry, and install completed APK packages directly.
+
+3. THE HUB – UNIFIED MEDIA LIBRARY & TV FILE BROWSER
+• Universal Media Organizer: Categorize and view videos, audio, documents, and APK packages in one clean dashboard.
+• TV File Manager: Full directory browser with grid and list views, parent folder navigation, and USB/external drive support.
+• Sideloaded App Launcher: Easily view and launch mobile apps that normally do not appear on standard Android TV home screens.
+• Live IPTV Stream Player: Load M3U/M3U8 playlists with ExoPlayer hardware-accelerated playback.
+
+4. THE OPTIMIZER – TV MEMORY CLEANER & STORAGE RECLAIMER
+• 1-Click RAM Booster: Free up active memory to prevent video playback stutter and lag.
+• Deep Cache Cleaner: Remove residual system and app cache junk to free up storage space.
+• Post-Installation APK Cleanup: Automatically detect and remove installer APKs after apps are installed.
+• Background Maintenance Service: Optional automated cleanup running quietly according to your schedule.
+
+5. FLEXIBLE CONFIGURATION & STORAGE CONTROL
+• Custom Storage Paths: Choose between internal storage, public downloads, or attached USB flash drives.
+• Smart Auto-Categorization: Automatically sort downloaded items into dedicated /APK, /Video, and /Music subfolders.
+• Multi-Thread Tuning: Adjust connection threads and Web Bridge port numbers to match your network speed.
+
+PRIVACY & PERMISSIONS:
+Hubit! respects your privacy. The application operates entirely locally on your device and private local area network. No telemetry data, personal identities, or file contents are collected or uploaded to external servers.
+
+Transform your Android TV experience with Hubit! – the ultimate utility for seamless TV file sharing, downloading, and memory optimization."
+vi,Vietnamese,Hubit: Quản lý File & Web TV,"Truyền file từ điện thoại sang TV, tải link, quản lý app và dọn dẹp bộ nhớ.","Hubit! là ứng dụng tiện ích tất-cả-trong-một dành cho Android TV và Google TV, hỗ trợ truyền file, tải dữ liệu tốc độ cao, quản lý tệp tin và tối ưu hóa bộ nhớ chuyên nghiệp.
+
+Dễ dàng chuyển file, ứng dụng APK, video và liên kết văn bản trực tiếp từ điện thoại hoặc máy tính lên màn hình TV qua mạng Wi-Fi nội bộ mà không cần dây cáp, tài khoản đám mây hay USB.
+
+TÍNH NĂNG NỔI BẬT:
+
+1. THE BRIDGE – TRUYỀN FILE & CLIPBOARD SIÊU TỐC
+• Máy chủ Web cục bộ: Mở địa chỉ IP hoặc quét mã QR từ điện thoại/PC để tải file lên TV ngay lập tức.
+• Đồng bộ Clipboard thời gian thực: Gửi nhanh văn bản, mật khẩu, link dài từ điện thoại lên TV mà không cần gõ remote.
+• An toàn tuyệt đối: Dữ liệu truyền hoàn toàn trong mạng Wi-Fi gia đình, không qua bất kỳ máy chủ trung gian nào.
+
+2. THE FETCHER – TRÌNH TẢI ĐA LUỒNG & DUYỆT WEB TV
+• Tải file đa luồng: Tăng tốc độ tải về cho các tệp APK, video, tài liệu với nhiều luồng kết nối đồng thời.
+• Trình duyệt tối ưu cho TV: Lướt web mượt mà bằng remote điều khiển từ xa, tích hợp sẵn tính năng chặn quảng cáo.
+• Bắt link video tự động: Tự phát hiện và đề xuất tải link media khi duyệt web.
+• Quản lý tác vụ: Tạm dừng, tiếp tục, tải lại và hỗ trợ cài đặt file APK trực tiếp sau khi tải xong.
+
+3. THE HUB – KHO TỆP TIN & QUẢN LÝ ỨNG DỤNG ẨN
+• Phân loại thông minh: Quản lý khoa học video, nhạc, tài liệu và các gói cài đặt APK.
+• Quản lý file chuyên sâu: Trình duyệt thư mục TV trực quan (dạng lưới / danh sách), hỗ trợ ổ đĩa USB và thẻ nhớ ngoài.
+• Mở ứng dụng Sideload: Hiển thị và khởi chạy các app di động bị ẩn trên giao diện Android TV gốc.
+• Xem truyền hình IPTV: Hỗ trợ nạp danh sách kênh M3U/M3U8 phát mượt mà với trình phát ExoPlayer.
+
+4. THE OPTIMIZER – BẢO TRÌ & GIẢI PHÓNG BỘ NHỚ TV
+• Tăng tốc RAM 1 chạm: Giải phóng RAM chạy ngầm giúp xem phim 4K mượt mà, hạn chế tối đa giật lag.
+• Dọn rác bộ đệm Cache: Quét và xóa sâu bộ nhớ đệm tạm thời của ứng dụng và hệ thống.
+• Dọn dẹp tệp APK thừa: Tự động phát hiện và xóa file cài đặt APK sau khi cài xong để tiết kiệm dung lượng.
+• Dịch vụ tối ưu nền: Tự động kích hoạt dọn dẹp theo chu kỳ đã thiết lập mà không làm phiền trải nghiệm xem TV.
+
+5. TÙY BIẾN HỆ THỐNG LINH HOẠT
+• Chọn vị trí lưu trữ: Lưu file vào bộ nhớ trong hoặc ổ cứng ngoài USB tiện lợi.
+• Tự động phân loại: Tự tạo và gom file vào các thư mục con /APK, /Video, /Nhạc.
+• Tùy chỉnh hiệu năng: Điều chỉnh số luồng tải và cổng kết nối Web Bridge theo nhu cầu.
+
+BẢO MẬT & QUYỀN RIÊNG TƯ:
+Hubit! cam kết tôn trọng quyền riêng tư của bạn. Ứng dụng hoạt động hoàn toàn offline trong mạng cục bộ LAN/Wi-Fi, không thu thập hay tải dữ liệu cá nhân của người dùng lên máy chủ bên ngoài."
+es,Spanish,Hubit: Archivos y Web para TV,"Transfiere archivos, descarga enlaces, gestiona apps y optimiza tu Android TV.","Hubit! es la solución integral de transferencia de archivos, gestión de descargas, explorador multimedia y optimizador de sistema para Android TV y Google TV.
+
+Transfiere archivos, paquetes APK, vídeos y enlaces desde tu móvil o PC directamente a tu televisor a través de tu red Wi-Fi local sin cables, registros ni memorias USB.
+
+CARACTERÍSTICAS PRINCIPALES:
+
+1. THE BRIDGE – TRANSFERENCIA LOCAL Y PORTAPAPELES
+• Servidor Web Integrado: Abre la dirección IP o escanea el código QR desde tu teléfono o PC para subir archivos al televisor al instante.
+• Portapapeles Universal: Envía textos largos, contraseñas y enlaces web directamente a la TV sin escribir con el mando.
+• 100% Privado y Local: Todo permanece dentro de tu red Wi-Fi doméstica.
+
+2. THE FETCHER – GESTOR DE DESCARGAS Y NAVEGADOR TV
+• Descargas Multihilo: Acelera la velocidad de descarga de archivos APK, vídeos y documentos.
+• Navegador Web Adaptado para TV: Navega con tu mando a distancia e incluye bloqueo de anuncios integrado.
+• Detector Inteligente de Medios: Identifica transmisiones de vídeo y audio descargables mientras navegas.
+• Control de Descargas: Pausa, reanuda, reintenta e instala paquetes APK descargados.
+
+3. THE HUB – BIBLIOTECA MULTIMEDIA Y GESTOR DE ARCHIVOS
+• Explorador de Archivos TV: Navegación completa por carpetas, vista de cuadrícula/lista y compatibilidad con memorias USB.
+• Lanzador de Apps Sideloaded: Accede y abre aplicaciones móviles que no aparecen en el inicio de Android TV.
+• Reproductor IPTV: Carga listas de canales M3U/M3U8 con reproducción fluida acelerada por hardware.
+
+4. THE OPTIMIZER – LIMPIEZA DE MEMORIA Y ALMACENAMIENTO
+• Liberador de RAM en 1 Clic: Cierra procesos en segundo plano para evitar tirones en vídeos 4K.
+• Limpieza de Caché: Elimina archivos temporales y basura del sistema para recuperar espacio.
+• Eliminación de APK Residuales: Borra instaladores APK tras completar la instalación de apps.
+• Servicio en Segundo Plano: Mantenimiento programado automático y silencioso.
+
+5. CONFIGURACIÓN Y ALMACENAMIENTO PERSONALIZADO
+• Rutas a Medida: Elige guardar descargas en el almacenamiento interno o en discos USB externos.
+• Clasificación Automática: Organiza archivos en subcarpetas dedicadas (/APK, /Video, /Musica).
+
+Disfruta de la mejor experiencia en Android TV con Hubit!"
+fr,French,Hubit: Fichiers & Web pour TV,"Transférez des fichiers, téléchargez des liens et optimisez votre Android TV.","Hubit! est une suite complète de transfert de fichiers, gestionnaire de téléchargements, explorateur multimédia et optimiseur pour Android TV et Google TV.
+
+Transférez facilement des fichiers, des applications APK, des vidéos et des liens depuis votre smartphone ou PC directement vers votre téléviseur via votre réseau Wi-Fi local sans câble ni clé USB.
+
+FONCTIONNALITÉS PRINCIPALES :
+
+1. THE BRIDGE – TRANSFERT LOCAL ET PRESSE-PAPIER
+• Serveur Web Embarqué : Ouvrez l'adresse IP affichée ou scannez le code QR depuis votre téléphone pour envoyer des fichiers instantanément.
+• Presse-papier Universel : Envoyez du texte long, des mots de passe et des URL sans saisie pénible à la télécommande.
+• Confidentialité Totale : Les transferts restent cantonnés à votre réseau Wi-Fi local privé.
+
+2. THE FETCHER – TÉLÉCHARGEMENT MULTI-FLUX ET NAVIGATEUR TV
+• Moteur Multi-Connexions : Accélérez le téléchargement de vos fichiers APK, vidéos et archives.
+• Navigateur Web pour TV : Naviguez à la télécommande avec blocage des publicités intégré.
+• Détecteur de Médias : Repérez et téléchargez automatiquement les flux vidéo et audio détectés.
+
+3. THE HUB – MÉDIATHÈQUE ET GESTIONNAIRE DE FICHIERS
+• Explorateur de Fichiers TV : Navigation par dossiers, affichage en grille/liste et gestion des clés USB externes.
+• Lanceur d'Applications Masquées : Lancez les applications mobiles sideloadées invisibles sur l'écran d'accueil TV.
+• Lecteur IPTV : Chargez vos listes M3U/M3U8 avec lecture fluide via ExoPlayer.
+
+4. THE OPTIMIZER – NETTOYAGE MÉMOIRE ET ACCÉLÉRATEUR
+• Boost RAM en 1 Clic : Libérez la mémoire vive pour fluidifier vos vidéos 4K.
+• Nettoyage Approfondi du Cache : Supprimez les fichiers temporaires pour récupérer de l'espace disque.
+• Suppression des APK Résiduels : Effacez les fichiers d'installation APK devenus inutiles.
+
+5. PARAMÈTRES ET STOCKAGE PERSONNALISÉS
+• Emplacement au Choix : Stockez vos fichiers sur la mémoire interne ou sur un support USB externe.
+• Rangement Automatique : Classez vos fichiers dans des sous-dossiers dédiés (/APK, /Video, /Musique).
+
+Optimisez votre expérience Android TV dès maintenant avec Hubit!"
+de,German,Hubit: TV Dateien & WebBridge,"Dateien übertragen, Links laden, Apps verwalten und Android TV optimieren.","Hubit! ist das All-in-One Werkzeug für Dateiübertragung, Download-Management, Dateiverwaltung und Systemoptimierung auf Android TV und Google TV.
+
+Übertragen Sie Dateien, APK-Dateien, Videos und Zwischenablage-Texte blitzschnell von Ihrem Smartphone oder Computer direkt auf Ihren Fernseher über Ihr lokales WLAN – ganz ohne Kabel oder USB-Sticks.
+
+HAUPTFUNKTIONEN:
+
+1. THE BRIDGE – LOKALE DATEI- & ZWISCHENABLAGE-ÜBERTRAGUNG
+• Integrierter Webserver: Öffnen Sie die angezeigte IP-Adresse oder scannen Sie den QR-Code mit Ihrem Handy, um Dateien sofort hochzuladen.
+• Universelle Zwischenablage: Senden Sie lange Texte, Passwörter und Webadressen direkt an den Fernseher.
+• 100% Privat: Alle Daten verbleiben vollständig in Ihrem lokalen Heimnetzwerk.
+
+2. THE FETCHER – SCHNELLER DOWNLOAD-MANAGER & TV-BROWSER
+• Multi-Thread-Download: Beschleunigtes Herunterladen von APKs, Videos und Dokumenten über mehrere Datenströme.
+• TV-Webbrowser: Bequem mit der Fernbedienung im Web surfen inklusive integriertem Werbeblocker.
+• Medien-Sniffer: Erkennt automatisch herunterladbare Video- und Audioquellen.
+
+3. THE HUB – MEDIENBIBLIOTHEK & TV-DATEIMANAGER
+• TV-Dateibrowser: Intuitive Ordnernavigation mit Raster- und Listenansicht sowie Unterstützung für USB-Speicher.
+• Sideload-App-Starter: Starten Sie mobile Apps, die auf der Standard-TV-Startseite nicht angezeigt werden.
+• IPTV-Player: M3U- und M3U8-Playlists mit nativer Hardware-Beschleunigung wiedergeben.
+
+4. THE OPTIMIZER – RAM-BOOSTER & SPEICHERBEREINIGUNG
+• 1-Klick RAM-Boost: Hintergrundprozesse beenden für ruckelfreie 4K-Videowiedergabe.
+• Cache-Bereinigung: Entfernt System- und App-Zwischenspeicher zur Freigabe von Speicherplatz.
+• APK-Reste entfernen: Löscht Installationsdateien automatisch nach erfolgreicher Installation.
+
+5. INDIVIDUELLE SPEICHERVERWALTUNG
+• Speicherort wählen: Speichern auf dem internen Speicher oder externen USB-Festplatten.
+• Automatische Sortierung: Ordnet Dateien automatisch in passende Unterordner ein (/APK, /Video, /Musik).
+
+Holen Sie das Beste aus Ihrem Android TV heraus mit Hubit!"
+it,Italian,Hubit: File e Web per TV,"Trasferisci file, scarica link, gestisci app e ottimizza la tua Android TV.","Hubit! è l'applicazione completa per il trasferimento file, la gestione dei download, l'esplorazione multimediale e l'ottimizzazione di Android TV e Google TV.
+
+Invia file, pacchetti APK, filmati e testi dagli appunti dal tuo smartphone o computer direttamente al televisore tramite la rete Wi-Fi locale, senza cavi né chiavette USB.
+
+CARATTERISTICHE PRINCIPALI:
+
+1. THE BRIDGE – TRASFERIMENTO FILE E APPUNTI IN RETE LOCALE
+• Server Web Integrato: Accedi all'indirizzo IP mostrato o inquadra il codice QR dal tuo telefono per inviare file all'istante.
+• Appunti Universali: Condividi testi lunghi, password e link web senza digitare con il telecomando.
+• Privacy Assoluta: Nessun dato transita su server esterni, tutto rimane nella tua rete domestica.
+
+2. THE FETCHER – DOWNLOAD ACCELERATO E BROWSER TV
+• Download Multi-Connessione: Velocizza il download di APK, video e file compressi.
+• Browser Web per TV: Naviga comodamente tramite telecomando con blocco della pubblicità integrato.
+• Rilevamento Multimediale: Intercetta automaticamente link a contenuti video e audio scaricabili.
+
+3. THE HUB – GESTORE FILE E APPLICAZIONI SIDELOAD
+• Esploratore File per TV: Vista a griglia o elenco, navigazione tra cartelle e supporto a memorie USB.
+• Avvio App Sideload: Visualizza e apri le app mobili normalmente nascoste sulla schermata principale TV.
+• Riproduttore IPTV: Carica playlist M3U/M3U8 con riproduzione fluida ExoPlayer.
+
+4. THE OPTIMIZER – PULIZIA MEMORIA E OTTIMIZZAZIONE
+• Boost RAM in 1 Clic: Libera memoria per garantire una riproduzione video 4K fluida e senza blocchi.
+• Pulizia Approfondita Cache: Elimina file temporanei e spazzatura di sistema.
+• Rimozione File APK Residui: Elimina i pacchetti di installazione una volta completata l'installazione.
+
+5. CONFIGURAZIONE FLESSIBILE
+• Scelta Percorso: Salva i download nella memoria interna o su supporti USB esterni.
+• Categorizzazione Automatica: Smista automaticamente i file nelle cartelle /APK, /Video, /Musica.
+
+Sfrutta al massimo la tua Android TV con Hubit!"
+pt,Portuguese (Brazil),Hubit: Arquivos e Web na TV,"Transfira arquivos, baixe links, gerencie apps e otimize sua Android TV.","Hubit! é a ferramenta completa de transferência de arquivos, gerenciamento de downloads, organização de mídia e otimização para Android TV e Google TV.
+
+Envie arquivos, pacotes APK, vídeos e links de texto do seu celular ou computador diretamente para a sua televisão via Wi-Fi local, sem precisar de cabos, pen drives ou contas em nuvem.
+
+DESTAQUES DO APLICATIVO:
+
+1. THE BRIDGE – TRANSFERÊNCIA LOCAL E ÁREA DE TRANSFERÊNCIA
+• Servidor Web Integrado: Abra o IP ou leia o QR Code no celular para enviar arquivos instantaneamente para a TV.
+• Área de Transferência em Tempo Real: Envie textos longos, senhas e links sem precisar digitar com o controle remoto.
+• 100% Seguro e Local: Todos os envios ocorrem exclusivamente na sua rede Wi-Fi residencial.
+
+2. THE FETCHER – GERENCIADOR DE DOWNLOADS E NAVEGADOR TV
+• Download com Múltiplas Conexões: Baixe arquivos APK, filmes e documentos com velocidade acelerada.
+• Navegador Web para TV: Navegue com o controle remoto com bloqueador de anúncios integrado.
+• Capturador Inteligente de Mídia: Identifica e facilita o download de vídeos e músicas enquanto você navega.
+
+3. THE HUB – GERENCIADOR DE ARQUIVOS E APPS
+• Explorador de Arquivos para TV: Exibição em grade ou lista, suporte a unidades USB externas e navegação por pastas.
+• Iniciador de Apps Sideload: Abra aplicativos móveis que não aparecem na tela inicial padrão da TV.
+• Player de IPTV: Reproduza listas de canais M3U e M3U8 com aceleração por hardware.
+
+4. THE OPTIMIZER – LIMPEZA DE MEMÓRIA E RAM
+• Impulsionador de RAM com 1 Clique: Libere memória para assistir a vídeos em 4K sem engasgos.
+• Limpeza Profunda de Cache: Remova arquivos temporários e lixo do sistema para liberar espaço.
+• Exclusão de APKs Residuais: Apague arquivos instaladores após a instalação dos aplicativos.
+
+5. ARMAZENAMENTO E CONFIGURAÇÕES
+• Escolha de Diretório: Salve na memória interna ou em dispositivos USB conectados.
+• Separação Automática: Classifique arquivos nas pastas dedicadas /APK, /Video, /Musica.
+
+Otimize sua experiência na Android TV com o Hubit!"
+ru,Russian,Hubit: Файлы и Сеть для ТВ,"Передача файлов с телефона на ТВ, загрузка по ссылкам и очистка памяти.","Hubit! — это универсальный инструмент для передачи файлов, загрузки по прямым ссылкам, управления медиатекой и оптимизации памяти на Android TV и Google TV.
+
+Передавайте файлы, APK-приложения, фильмы и текст из буфера обмена с телефона или ПК прямо на телевизор по локальной сети Wi-Fi без проводов, флешек и облачных хранилищ.
+
+ОСНОВНЫЕ ВОЗМОЖНОСТИ:
+
+1. THE BRIDGE – ЛОКАЛЬНАЯ ПЕРЕДАЧА ФАЙЛОВ И ТЕКСТА
+• Встроенный веб-сервер: Откройте указанный IP-адрес или отсканируйте QR-код смартфоном для мгновенной отправки файлов на ТВ.
+• Синхронизация буфера обмена: Отправляйте длинные пароли и ссылки с телефона на экран ТВ без ввода с пульта.
+• Полная конфиденциальность: Передача данных происходит исключительно внутри вашей домашней сети Wi-Fi.
+
+2. THE FETCHER – МНОГОПОТОЧНЫЙ ЗАГРУЗЧИК И ТВ-БРАУЗЕР
+• Ускоренная загрузка: Скачивайте APK-файлы, видео и архивы в несколько потоков.
+• ТВ-веб-браузер: Удобная навигация пультом ДУ со встроенной блокировкой рекламы.
+• Перехватчик медиа: Автоматическое определение видеопотоков для загрузки во время веб-серфинга.
+
+3. THE HUB – ФАЙЛОВЫЙ МЕНЕДЖЕР И СКРЫТЫЕ ПРИЛОЖЕНИЯ
+• Проводник файлов для ТВ: Удобная сетка/список файлов, поддержка внешних USB-накопителей.
+• Запуск сторонних приложений: Запуск мобильных приложений, скрытых на стандартном главном экране Android TV.
+• Просмотр IPTV: Поддержка плейлистов M3U/M3U8 с аппаратным ускорением воспроизведения.
+
+4. THE OPTIMIZER – ОЧИСТКА ПАМЯТИ И УСКОРЕНИЕ RAM
+• Ускорение RAM в 1 клик: Освобождение оперативной памяти для плавного воспроизведения 4K видео.
+• Глубокая очистка кэша: Удаление временных файлов системы и приложений.
+• Удаление остаточных APK: Очистка установочных пакетов после завершения установки приложений.
+
+5. НАСТРОЙКИ ХРАНИЛИЩА
+• Выбор пути: Сохранение на внутреннюю память или внешний USB-диск.
+• Автосортировка: Автоматическое распределение по папкам /APK, /Video, /Music.
+
+Сделайте ваш Android TV удобнее с приложением Hubit!"
+ja,Japanese,Hubit: TVファイル管理と転送,スマホからTVへファイル転送、リンク高速DL、アプリ管理とメモリ最適化。,"Hubit!（ハビット）は、Android TV および Google TV のために設計されたオールインワンのファイル転送、ダウンロード管理、メディア整理、システム最適化アプリです。
+
+ケーブルやUSBメモリ、クラウドサービスを使わずに、同一Wi-Fiネットワーク上のスマホやPCからファイル、APK、動画、クリップボードのテキストをテレビへ瞬時に転送できます。
+
+主な機能：
+
+1. THE BRIDGE – Wi-Fiローカルファイル＆テキスト転送
+• 内蔵Webサーバー: 画面のIPアドレスにアクセス、またはQRコードをスマホで読み取るだけでファイル送信が可能。
+• リアルタイムクリップボード: スマホから長いURLやパスワードをテレビへ送信し、リモコンでの文字入力を省略。
+• 完全ローカル設計: 自宅のローカルネットワーク内のみで処理されるためプライバシーも安心。
+
+2. THE FETCHER – 高速マルチスレッドDL＆TVブラウザ
+• 高速ダウンロード: 複数接続によるAPKや動画ファイルの高速保存。
+• TV最適化ブラウザ: リモコンで快適に操作可能。広告ブロック機能も搭載。
+• メディア自動検出: Webブラウジング中に動画や音声ストリームを検出して保存可能。
+
+3. THE HUB – メディア整理＆TVファイルマネージャー
+• TVファイルブラウザ: グリッド・リスト表示対応。USBメモリや外付けストレージの読み込みに対応。
+• サイドロードアプリ起動: TVのホーム画面に表示されないスマホ向けアプリを一覧表示して起動。
+• IPTV再生: M3U/M3U8プレイリストの読み込みとスムーズな動画再生。
+
+4. THE OPTIMIZER – メモリ解放＆ストレージ清掃
+• ワンタップRAMブースト: バックグラウンドプロセスを解放し、4K動画のコマ落ちを軽減。
+• キャッシュクリーン: アプリやシステムの一時ファイルを削除して空き容量を確保。
+• インストール済みAPKの自動削除: アプリインストール完了後に不要になったAPKを削除。
+
+5. 柔軟なストレージ設定
+• 保存先選択: 内蔵ストレージまたは接続した外付けUSBを選択可能。
+• 自動フォルダ仕分け: /APK、/Video、/Musicフォルダへ自動整理。
+
+Hubit! で Android TV の使いやすさを大幅に向上させましょう！"
+ko,Korean,Hubit: TV 파일 전송 및 관리,"스마트폰에서 TV로 파일 전송, 초고속 다운로드, 앱 관리 및 메모리 최적화.","Hubit!은 Android TV 및 Google TV 기기를 위한 올인원 로컬 파일 전송, 다운로드 관리, 미디어 탐색기 및 시스템 최적화 도구입니다.
+
+케이블이나 USB, 복잡한 클라우드 연결 없이 동일한 Wi-Fi 네트워크에서 스마트폰이나 PC의 파일, APK, 동영상, 클립보드 링크를 TV로 즉시 전송할 수 있습니다.
+
+주요 핵심 기능:
+
+1. THE BRIDGE – 로컬 파일 및 클립보드 고속 전송
+• 내장 웹 서버: 화면에 표시된 IP로 접속하거나 QR 코드를 스마트폰으로 스캔하여 즉시 파일 업로드.
+• 실시간 클립보드 동기화: 리모컨 입력 없이 스마트폰에서 긴 텍스트, 비밀번호, URL을 TV로 바로 전송.
+• 완벽한 보안: 모든 데이터는 가정 내 로컬 Wi-Fi 네트워크에서만 전송되어 안전합니다.
+
+2. THE FETCHER – 멀티스레드 다운로더 & TV 브라우저
+• 멀티 연결 가속 다운로드: APK, 동영상, 대용량 파일을 빠른 속도로 다운로드.
+• TV 전용 웹 브라우저: 리모컨 조작에 최적화되었으며 광고 차단 기능 내장.
+• 미디어 스니퍼: 웹 서핑 중 다운로드 가능한 비디오 및 오디오 링크 자동 감지.
+
+3. THE HUB – 통합 미디어 라이브러리 & TV 파일 탐색기
+• TV 파일 관리자: 그리드/리스트 뷰, 폴더 이동 및 외장 USB 메모리 지원.
+• 사이드로드 앱 실행기: TV 기본 홈 화면에 표시되지 않는 모바일 앱을 쉽게 찾아서 실행.
+• IPTV 플레이어: M3U/M3U8 재생목록을 지원하여 부드러운 하드웨어 가속 재생 제공.
+
+4. THE OPTIMIZER – 메모리 정리 및 용량 확보
+• 1-클릭 RAM 부스터: 백그라운드 프로세스를 정리하여 4K 영상 재생 시 버벅임을 줄입니다.
+• 딥 캐시 청소: 불필요한 시스템 및 앱 임시 파일을 정리하여 저장 공간 확보.
+• 설치 후 잔여 APK 삭제: 앱 설치 완료 후 불필요해진 설치 파일을 감지하여 삭제.
+
+5. 자유로운 저장소 설정
+• 저장 위치 선택: 내부 저장소 또는 연결된 USB 드라이브 지정 가능.
+• 스마트 자동 분류: /APK, /Video, /Music 하위 폴더로 자동 분류 저장.
+
+Hubit!으로 Android TV를 더욱 편리하고 빠르게 관리하세요!"
+zh,Chinese (Simplified),Hubit: 电视文件传输与管理,手机向电视极速传文件，多线程下载，应用管理与内存垃圾清理加速。,"Hubit! 是一款专为 Android TV 和 Google TV 量身打造的全能型文件传输、多线程下载、媒体管理与系统优化工具。
+
+无需数据线、U盘或第三方云盘，在同一局域网 Wi-Fi 下，即可轻松将手机或电脑上的文件、APK安装包、视频和剪贴板内容直接推送到电视上。
+
+主要功能亮点：
+
+1. THE BRIDGE – 局域网极速快传与剪贴板同步
+• 内置Web服务：手机扫描屏幕上的二维码或浏览器打开IP地址，即可直接上传文件到电视。
+• 跨屏剪贴板：手机输入长网址、密码或文本一键同步到电视，彻底告别电视遥控器繁琐输入。
+• 隐私安全：所有传输均在家庭局域网内完成，无需上传任何云端服务器。
+
+2. THE FETCHER – 多线程高速下载器与TV浏览器
+• 多线程加速下载：多连接并发下载 APK、视频和大文件，跑满网络带宽。
+• TV定制浏览器：专为电视遥控器优化的操作体验，内置实用广告拦截功能。
+• 媒体嗅探抓取：浏览网页时自动检测可下载的音视频流。
+
+3. THE HUB – 统一媒体库与电视文件管理器
+• TV文件浏览器：支持网格/列表视图切换，支持浏览移动U盘与外接存储设备。
+• 侧载应用提取器：一键查看并启动无法在电视原生主屏幕上显示的移动端应用。
+• IPTV直播播放：支持导入 M3U/M3U8 播放列表，基于硬件加速流畅播放。
+
+4. THE OPTIMIZER – 电视内存加速与垃圾清理
+• 一键释放RAM：快速清理后台闲置进程，保障4K高清视频流畅不卡顿。
+• 深度清理缓存：扫描并清除系统与应用缓存垃圾，释放宝贵存储空间。
+• 安装包残留清理：应用安装完成后，自动检测并删除冗余的 APK 安装包。
+
+5. 灵活的存储与系统配置
+• 自定义存储路径：自由切换内部存储或外接USB存储设备。
+• 智能文件夹归类：自动将下载文件归类整理至 /APK、/Video、/Music 等专属子目录。
+
+使用 Hubit! 让您的 Android TV 变得更加高效与流畅！"
+ar,Arabic,Hubit: نقل الملفات لتلفاز,نقل الملفات من الهاتف إلى التلفاز، تنزيل الروابط وإدارة وتنظيف الذاكرة.,"تطبيق Hubit! هو الأداة الشاملة لنقل الملفات وإدارة التنزيلات وتصفح الوسائط وتحسين الأداء المصممة خصيصاً لأجهزة Android TV و Google TV.
+
+انقل الملفات وحزم APK ومقاطع الفيديو والروابط من هاتفك أو حاسوبك مباشرة إلى التلفاز عبر شبكة Wi-Fi المحلية دون الحاجة إلى كابلات أو فلاشات USB.
+
+الميزات الرئيسية:
+
+1. THE BRIDGE – النقل المحلي ومزامنة الحافظة
+• خادم ويب مدمج: افتح عنوان IP الظاهر أو امسح رمز QR من هاتفك لرفع الملفات إلى التلفاز فوراً.
+• مزامنة الحافظة الفورية: أرسل النصوص وكلمات المرور والروابط الطويلة من هاتفك لتجنب الكتابة بجهاز التحكم.
+• خصوصية كاملة: تتم جميع العمليات داخل شبكتك المنزلية دون رفع أي بيانات إلى خوادم خارجية.
+
+2. THE FETCHER – مدير التنزيل والمتصفح
+• تنزيل متعدد المسارات: تسريع تنزيل ملفات APK والفيديوهات والمستندات.
+• متصفح مخصص للتلفاز: تصفح سهل بالريموت مع ميزة حظر الإعلانات المدمجة.
+• كاشف الوسائط: التقاط روابط الفيديو والصوت تلقائياً أثناء التصفح.
+
+3. THE HUB – مكتبة الوسائط ومدير الملفات
+• متصفح ملفات التلفاز: عرض شبكي أو قائمة مع دعم كامل لمحركات الأقراص USB الخارجية.
+• مشغل التطبيقات الجانبية: تشغيل التطبيقات المحملة جانبياً والتي لا تظهر في الواجهة الرئيسية.
+• مشغل IPTV: تشغيل قوائم M3U/M3U8 بسلاسة مع دعم التسريع العتادي.
+
+4. THE OPTIMIZER – تحسين الذاكرة والتنظيف
+• تسريع الرام بنقرة واحدة: تفريغ الذاكرة العشوائية لتشغيل فيديو 4K دون تقطيع.
+• تنظيف الكاش العميق: إزالة الملفات المؤقتة لتوفير مساحة التخزين.
+• حذف ملفات APK الزائدة: إزالة ملفات التثبيت تلقائياً بعد تثبيت التطبيقات.
+
+استمتع بأفضل تجربة مع Hubit! على أجهزة التلفاز الذكية."
+hi,Hindi,Hubit: TV फ़ाइल और वेब टूल,"फ़ोन से TV पर फ़ाइल भेजें, लिंक डाउनलोड करें और मेमोरी साफ़ करें।","Hubit! Android TV और Google TV के लिए एक संपूर्ण फ़ाइल ट्रांसफर, डाउनलोड मैनेजर, मीडिया ऑर्गनाइज़र और मेमोरी क्लीनर टूल है।
+
+अपने मोबाइल फ़ोन या कंप्यूटर से सीधे अपने टीवी पर Wi-Fi के माध्यम से फ़ाइलें, APK ऐप्स, वीडियो और क्लिपबोर्ड लिंक भेजें, बिना किसी केबल या USB ड्राइव के।
+
+मुख्य विशेषताएं:
+
+1. THE BRIDGE – लोकल फ़ाइल और क्लिपबोर्ड ट्रांसफर
+• इन-बिल्ट वेब सर्वर: मोबाइल से QR कोड स्कैन करें या IP एड्रेस खोलकर तुरंत फ़ाइलें भेजें।
+• रियल-टाइम क्लिपबोर्ड: फ़ोन से बड़े पासवर्ड और लिंक सीधे टीवी पर भेजें, रिमोट से टाइप करने की ज़रूरत नहीं।
+• 100% सुरक्षित और लोकल: सभी फ़ाइलें केवल आपके होम नेटवर्क के अंदर ट्रांसफर होती हैं।
+
+2. THE FETCHER – मल्टी-थ्रेड डाउनलोडर और टीवी ब्राउज़र
+• सुपरफ़ास्ट डाउनलोड: कई कनेक्शन थ्रेड्स के साथ APK और वीडियो तेज़ी से डाउनलोड करें।
+• टीवी वेब ब्राउज़र: रिमोट-फ्रेंडली ब्राउज़िंग और विज्ञापन ब्लॉकर की सुविधा।
+• मीडिया स्निफ़र: ब्राउज़ करते समय डाउनलोड करने योग्य वीडियो लिंक का स्वतः पता लगाएं।
+
+3. THE HUB – फ़ाइल मैनेजर और मीडिया लाइब्रेरी
+• टीवी फ़ाइल एक्सप्लोरर: ग्रिड और लिस्ट व्यू के साथ USB स्टोरेज का पूरा सपोर्ट।
+• साइडलोडेड ऐप लॉन्चर: टीवी स्क्रीन पर छिपे हुए मोबाइल ऐप्स को आसानी से खोलें।
+• IPTV प्लेयर: M3U प्लेलिस्ट चलाएं बेहतरीन वीडियो क्वालिटी के साथ।
+
+4. THE OPTIMIZER – रैम बूस्टर और स्टोरेज क्लीनर
+• 1-क्लिक रैम बूस्ट: बैकग्राउंड ऐप्स साफ़ करें ताकि 4K वीडियो बिना रुकावट चले।
+• डीप कैशे क्लीनर: गैर-ज़रूरी फ़ाइलें हटाकर टीवी की स्टोरेज खाली करें।
+• APK क्लीनअप: ऐप इंस्टॉल होने के बाद बची हुई APK फ़ाइलों को हटाएं।
+
+Hubit! के साथ अपने Android TV को बनाएं और भी तेज़ और आसान।"
+id,Indonesian,Hubit: File & Web Bridge TV,"Transfer file dari HP ke TV, unduh link, kelola aplikasi & optimalkan TV.","Hubit! adalah aplikasi utilitas lengkap untuk transfer file, pengelola unduhan, penjelajah media, dan pengoptimal sistem pada Android TV dan Google TV.
+
+Kirim file, aplikasi APK, video, dan tautan teks langsung dari HP atau komputer ke layar TV melalui jaringan Wi-Fi lokal tanpa kabel atau flashdisk.
+
+FITUR UTAMA:
+
+1. THE BRIDGE – TRANSFER FILE LOKAL & PAPAN KLIP
+• Web Server Terintegrasi: Buka alamat IP atau pindai kode QR dari ponsel untuk mengirim file secara instan.
+• Sinkronisasi Papan Klip: Kirim teks panjang, kata sandi, dan URL dari HP ke TV tanpa repot mengetik dengan remote.
+• 100% Privat: Semua transfer data berlangsung hanya di jaringan Wi-Fi lokal Anda.
+
+2. THE FETCHER – PENGUNDUH MULTI-THREAD & BROWSER TV
+• Unduhan Cepat: Tingkatkan kecepatan unduh untuk file APK, video, dan dokumen.
+• Browser Web TV: Jelajahi web dengan remote TV dilengkapi pemblokir iklan bawaan.
+• Pelacak Media Pintar: Mendeteksi aliran video dan audio yang dapat diunduh secara otomatis.
+
+3. THE HUB – PENGELOLA FILE & APLIKASI TERSEMBUNYI
+• Penjelajah File TV: Tampilan kisi/daftar dengan dukungan membaca penyimpanan USB flashdisk.
+• Peluncur Aplikasi Sideload: Buka aplikasi seluler yang tersembunyi di layar utama Android TV.
+• Pemutar IPTV: Muat daftar putar M3U/M3U8 dengan pemutaran lancar didukung akselerasi perangkat keras.
+
+4. THE OPTIMIZER – PEMBERSIH MEMORI & PENINGKAT RAM
+• 1-Klik Pembersih RAM: Bersihkan proses latar belakang agar streaming 4K lancar tanpa patah-patah.
+• Pembersih Cache: Hapus file sampah dan data sementara untuk menghemat ruang penyimpanan.
+• Hapus Sisa APK: Hapus file installer APK secara otomatis setelah instalasi selesai.
+
+5. PENGATURAN PENYIMPANAN FLEKSIBEL
+• Pilih Lokasi: Simpan ke penyimpanan internal atau harddisk/USB eksternal.
+• Kategori Otomatis: Rapikan file ke subfolder /APK, /Video, dan /Musik.
+
+Jadikan Android TV Anda lebih bertenaga dengan Hubit!"
+th,Thai,Hubit: จัดการไฟล์และเว็บ TV,ส่งไฟล์จากมือถือเข้าทีวี โหลดลิงก์เร็ว จัดการแอป และล้างขยะในเครื่อง,"Hubit! คือเครื่องมือจัดการไฟล์แบบครบวงจรสำหรับ Android TV และ Google TV เพื่อการส่งไฟล์ ดาวน์โหลดความเร็วสูง จัดการสื่อ และเพิ่มประสิทธิภาพของทีวี
+
+โอนถ่ายไฟล์ แอป APK วิดีโอ และข้อความจากมือถือหรือคอมพิวเตอร์เข้าสู่สมาร์ททีวีได้โดยตรงผ่านเครือข่าย Wi-Fi เดียวกัน โดยไม่ต้องใช้สายเคเบิลหรือแฟลชไดรฟ์
+
+คุณสมบัติเด่น:
+
+1. THE BRIDGE – ส่งไฟล์และข้อความผ่าน Wi-Fi ท้องถิ่น
+• เว็บเซิร์ฟเวอร์ในตัว: สแกน QR Code หรือเปิด IP ผ่านมือถือเพื่อส่งไฟล์เข้าทีวีได้ทันที
+• ซิงค์คลิปบอร์ดแบบเรียลไทม์: ส่งลิงก์ ข้อความ และรหัสผ่านจากมือถือเข้าทีวีได้ง่ายๆ ไม่ต้องพิมพ์ด้วยรีโมต
+• ปลอดภัยสูงสุด: ทำงานภายในเครือข่าย Wi-Fi ในบ้านเท่านั้น ไม่มีการส่งข้อมูลออกนอกเครื่อง
+
+2. THE FETCHER – ตัวช่วยดาวน์โหลดมัลติเธรดและเว็บเบราว์เซอร์
+• ดาวน์โหลดเร่งความเร็ว: รองรับการดาวน์โหลดไฟล์ APK และวิดีโอหลายการเชื่อมต่อพร้อมกัน
+• เว็บเบราว์เซอร์สำหรับทีวี: ควบคุมง่ายด้วยรีโมต พร้อมระบบบล็อกโฆษณาในตัว
+• ตรวจจับไฟล์มีเดีย: ตรวจจับลิงก์วิดีโอและเสียงที่สามารถดาวน์โหลดได้อัตโนมัติ
+
+3. THE HUB – จัดการไฟล์และแอปที่ซ่อนอยู่
+• ตัวจัดการไฟล์บนทีวี: ดูไฟล์แบบตารางหรือรายการ รองรับการเชื่อมต่อแฟลชไดรฟ์ USB
+• ตัวเปิดแอป Sideload: ค้นหาและเปิดแอปมือถือที่ติดตั้งไว้แต่ไม่แสดงบนหน้าจอหลักของทีวี
+• เครื่องเล่น IPTV: รองรับเพลย์ลิสต์ M3U/M3U8 เล่นวิดีโอได้อย่างลื่นไหล
+
+4. THE OPTIMIZER – ล้างขยะและเพิ่มความเร็วแรม
+• บูสต์แรมในคลิกเดียว: ปิดแอปเบื้องหลังเพื่อการดูวิดีโอ 4K ที่ลื่นไหลไม่สะดุด
+• ล้างแคชระบบ: ลบไฟล์ขยะและไฟล์ชั่วคราวเพื่อเพิ่มพื้นที่ว่างในทีวี
+• ลบไฟล์ APK ตกค้าง: ตรวจจับและลบไฟล์ติดตั้ง APK หลังจากติดตั้งเสร็จสิ้น
+
+เพิ่มความสะดวกสบายในการใช้งาน Android TV ด้วย Hubit!"
+tr,Turkish,Hubit: TV Dosya ve Web Araç,"Telefondan TV'ye dosya aktarın, bağlantı indirin ve Android TV'yi hızlandırın.","Hubit!, Android TV ve Google TV cihazları için tasarlanmış hepsi bir arada dosya aktarımı, indirme yöneticisi, medya düzenleyici ve sistem temizleyicisidir.
+
+Kablo veya USB belleğe gerek duymadan telefonunuzdan veya bilgisayarınızdan televizyonunuza aynı yerel Wi-Fi ağı üzerinden dosya, APK, video ve metin aktarın.
+
+ÖNE ÇIKAN ÖZELLİKLER:
+
+1. THE BRIDGE – YEREL DOSYA VE PANO AKTARIMI
+• Entegre Web Sunucusu: Ekranda gösterilen IP adresini açarak veya QR kodunu telefonunuzla tarayarak televizyona anında dosya yükleyin.
+• Gerçek Zamanlı Pano Eşitleme: Kumandayla yazma zahmetine girmeden telefonunuzdan uzun şifreleri ve bağlantıları TV'ye gönderin.
+• %100 Güvenli ve Yerel: Tüm aktarımlar sadece evinizdeki Wi-Fi ağı içinde gerçekleşir.
+
+2. THE FETCHER – ÇOK KANALLI İNDİRİCİ VE TV TARAYICISI
+• Hızlı İndirme Motoru: APK, video ve arşiv dosyalarını çoklu bağlantı ile hızla indirin.
+• TV Uyumlu Web Tarayıcısı: Dahili reklam engelleyici ile kumandayla rahat web gezintisi.
+• Medya Yakalayıcı: Gezinirken indirilebilir video ve ses akışlarını otomatik olarak algılar.
+
+3. THE HUB – MEDYA KÜTÜPHANESİ VE DOSYA YÖNETİCİSİ
+• TV Dosya Gezgini: Izgara/liste görünümü ve harici USB bellek desteği.
+• Sideload Uygulama Başlatıcı: TV ana ekranında görünmeyen mobil uygulamaları kolayca açın.
+• IPTV Oynatıcı: M3U/M3U8 çalma listelerini donanım hızlandırmalı olarak sorunsuzca oynatın.
+
+4. THE OPTIMIZER – RAM BOOSTER VE HAFIZA TEMİZLİĞİ
+• Tek Tıkla RAM Hızlandırma: 4K video oynatımında takılmaları önlemek için arka plan işlemlerini sonlandırın.
+• Derin Önbellek Temizliği: Depolama alanını boşaltmak için geçici sistem çöplerini silin.
+• APK Kalıntı Temizliği: Uygulamalar kurulduktan sonra gereks свойстваsız kalan APK dosyalarını temizleyin.
+
+Android TV deneyiminizi Hubit! ile bir üst seviyeye taşıyın!"
+pl,Polish,Hubit: Pliki i Web na TV,"Przesyłaj pliki z telefonu na TV, pobieraj linki i optymalizuj Android TV.","Hubit! to wszechstronny zestaw narzędzi do przesyłania plików, zarządzania pobieraniem, przeglądania multimediów i optymalizacji pamięci dla Android TV oraz Google TV.
+
+Przesyłaj pliki, aplikacje APK, filmy i teksty ze schowka bezpośrednio ze smartfona lub komputera na telewizor przez lokalną sieć Wi-Fi bez użycia kabli czy pendrive'ów.
+
+GŁÓWNE FUNKCJE:
+
+1. THE BRIDGE – LOKALNE PRZESYŁANIE PLIKÓW I SCHOWKA
+• Wbudowany Serwer Web: Otwórz adres IP lub zeskanuj kod QR telefonem, aby błyskawicznie przesyłać pliki na TV.
+• Schowek w Czasie Rzeczywistym: Wysyłaj długie teksty, hasła i linki z telefonu bez żmudnego wpisywania pilotem.
+• Pełna Prywatność: Wszystkie dane pozostają wyłącznie w Twojej lokalnej sieci domowej.
+
+2. THE FETCHER – WIELOWĄTKOWY MENEDŻER POBIERANIA I PRZEGLĄDARKA
+• Przyspieszone Pobieranie: Pobieraj pliki APK, filmy i dokumenty wieloma połączeniami naraz.
+• Przeglądarka Web dla TV: Wygodne sterowanie pilotem i wbudowane blokowanie reklam.
+• Wykrywanie Multimediów: Automatyczne przechwytywanie linków wideo i audio podczas surfowania.
+
+3. THE HUB – BIBLIOTEKA PLIKÓW I APLIKACJE SIDELOAD
+• Menedżer Plików TV: Widok siatki i listy, obsługa pamięci zewnętrznych USB.
+• Starter Ukrytych Aplikacji: Uruchamiaj aplikacje mobilne niewidoczne na ekranie głównym TV.
+• Odtwarzacz IPTV: Odtwarzaj listy M3U/M3U8 z płynnym przyspieszeniem sprzętowym.
+
+4. THE OPTIMIZER – CZYSZCZENIE PAMIĘCI I RAM BOOSTER
+• 1-Klik RAM Booster: Zwalniaj pamięć operacyjną, aby zapewnić płynne odtwarzanie 4K.
+• Głębokie Czyszczenie Cache: Usuwaj tymczasowe pliki systemowe i odzyskuj miejsce na dysku.
+• Usuwanie Resztek APK: Automatycznie usuwaj instalatory APK po zainstalowaniu aplikacji.
+
+Hubit! to niezbędne narzędzie dla Twojego Android TV!"
+nl,Dutch,Hubit: TV Bestanden & Web,"Bestanden versturen naar TV, links downloaden en je Android TV versnellen.","Hubit! is het complete alles-in-één hulpprogramma voor bestandsoverdracht, downloadbeheer, mediabediening en systeemprestaties op Android TV en Google TV.
+
+Verstuur bestanden, APK-apps, video's en klembordinhoud vanaf je telefoon of pc rechtstreeks naar je tv via je lokale wifi-netwerk, zonder kabels of usb-sticks.
+
+BELANGRIJKSTE FUNCTIES:
+
+1. THE BRIDGE – LOKALE BESTANDSOVERDRACHT & KLEMBORD
+• Ingebouwde Webserver: Open het IP-adres of scan de QR-code met je smartphone om direct bestanden naar je tv te uploaden.
+• Universeel Klembord: Stuur lange teksten, wachtwoorden en webkoppelingen naar je tv zonder gedoe met de afstandsbediening.
+• 100% Veilig & Lokaal: Alle overdrachten blijven strikt binnen je eigen thuisnetwerk.
+
+2. THE FETCHER – SNELLE DOWNLOADMANAGER & TV-BROWSER
+• Multi-Thread Downloads: Verhoog de downloadsnelheid van APK's, video's en documenten.
+• TV-Webbrowser: Eenvoudig browsen met je afstandsbediening inclusief ingebouwde advertentieblokkering.
+• Slimme Mediasniffer: Herkent automatisch downloadbare videostreams tijdens het browsen.
+
+3. THE HUB – MEDIABIBLIOTHEEK & TV-BESTANDSBEHEER
+• TV-Bestandsbrowser: Raster- en lijstweergave met volledige ondersteuning voor usb-drives.
+• Sideloaded App Launcher: Open mobiele apps die niet op het standaardscherm van Android TV verschijnen.
+• IPTV-Speler: Speel M3U/M3U8-afspeellijsten soepel af met hardwareversnelling.
+
+4. THE OPTIMIZER – RAM-BOOSTER & OPSLAG OPSCHONEN
+• 1-Klik RAM Boost: Sluit achtergrondprocessen om haperingen bij 4K-video te voorkomen.
+• Grondige Cache-reiniging: Verwijder tijdelijke systeembestanden om opslagruimte vrij te maken.
+• APK-opruiming: Verwijder installatiebestanden automatisch nadat de app is geïnstalleerd.
+
+Haal het maximale uit je Android TV met Hubit!"
+sv,Swedish,Hubit: TV Filer & Web Bridge,"Överför filer från mobilen till TV, ladda ner länkar och optimera Android TV.","Hubit! är ett komplett verktyg för filöverföring, nedladdningshantering, mediabibliotek och systemoptimering för Android TV och Google TV.
+
+Överför filer, APK-appar, videor och länkar direkt från din mobil eller dator till din TV via lokalt Wi-Fi utan sladdar eller USB-minnen.
+
+FUNKTIONER:
+
+1. THE BRIDGE – LOKAL FILÖVERFÖRING & URKLIPP
+• Inbyggd webbserver: Öppna IP-adressen eller skanna QR-koden från telefonen för att snabbt ladda upp filer till TV:n.
+• Universellt urklipp: Skicka långa texter, lösenord och webblänkar direkt till TV:n.
+• Helt privat: Alla överföringar sker inom ditt privata hemmanätverk.
+
+2. THE FETCHER – FLERTRÅDAD NEDLADDNING & TV-WEBBLÄSARE
+• Snabb nedladdning: Ladda ner APK-filer och videor med flera samtidiga anslutningar.
+• TV-anpassad webbläsare: Navigera med fjärrkontrollen och inbyggd annonsblockerare.
+• Mediasniffer: Hitta och spara nedladdningsbara videoströmmar automatiskt.
+
+3. THE HUB – MEDIABIBLIOTEK & FILHANTERARE
+• TV-filhanterare: Rutnäts- och listvy med stöd för externa USB-minnen.
+• Sideload App Launcher: Starta mobilappar som inte syns på TV:ns vanliga hemskärm.
+• IPTV-spelare: Spela upp M3U-spellistor smidigt med hårdvaruacceleration.
+
+4. THE OPTIMIZER – MINNESRENSNING & RAM-BOOST
+• 1-klicks RAM-boost: Frigör arbetsminne för hackfri 4K-videouppspelning.
+• Djup cache-rensning: Ta bort temporära filer och frigör lagringsutrymme.
+• APK-rensning: Radera installationsfiler efter att appar har installerats.
+
+Gör din Android TV snabbare och smidigare med Hubit!"
+da,Danish,Hubit: TV Filer og Webbro,"Overfør filer fra mobil til TV, download links og optimer dit Android TV.","Hubit! er det komplette værktøj til filoverførsel, downloadstyring, mediehåndtering og systemoptimering til Android TV og Google TV.
+
+Overfør filer, APK-installationsfiler, videoer og udklipsholdertekster fra din smartphone eller computer direkte til dit TV via lokalt Wi-Fi uden kabler eller USB-drev.
+
+VIGTIGE FUNKTIONER:
+
+1. THE BRIDGE – LOKAL FIL- OG UDKLIPSHOLDEROVERFØRSEL
+• Indbygget webserver: Åbn IP-adressen eller scan QR-koden fra mobilen for at uploade filer med det samme.
+• Universel udklipsholder: Send adgangskoder og lange links til TV'et uden fjernbetjeningsbøvl.
+• 100% Lokalt: Alle data forbliver på dit lokale Wi-Fi-netværk.
+
+2. THE FETCHER – MULTI-THREAD DOWNLOAD & TV-BROWSER
+• Hurtig download: Hent APK'er, videoer og dokumenter med høj hastighed.
+• TV-webbrowser: Nem navigation med fjernbetjeningen og indbygget annonceblokering.
+• Mediedetektor: Find og download automatisk videofiler under browsing.
+
+3. THE HUB – FILSTYRING & SIDELOAD-APPS
+• TV-filbrowser: Gitter- og listevisning med fuld understøttelse af USB-enheder.
+• Sideloaded App Launcher: Start mobilapps, som normalt er skjult på TV'et.
+• IPTV-afspiller: Afspil M3U/M3U8-kanaler med hardwareacceleration.
+
+4. THE OPTIMIZER – RAM-BOOST & CACHE-RENSNING
+• 1-Klik RAM-frigørelse: Frigør hukommelse for jævn 4K-afspilning.
+• Dybderensning af cache: Fjern midlertidige filer for at spare lagerplads.
+• Slet overskydende APK'er: Fjern installationsfiler automatisk efter brug.
+
+Gør dit Android TV endnu bedre med Hubit!"
+fi,Finnish,Hubit: TV Tiedostot & Silta,"Siirrä tiedostoja puhelimesta TV:hen, lataa linkkejä ja optimoi Android TV.","Hubit! on monipuolinen tiedostonsiirto-, lataushallinta-, medianselain- ja järjestelmäoptimointisovellus Android TV- ja Google TV -laitteille.
+
+Siirrä tiedostoja, APK-paketteja, videoita ja leikepöydän tekstejä puhelimesta tai tietokoneesta suoraan televisioosi paikallisen Wi-Fi-verkon kautta ilman johtoja tai USB-tikkuja.
+
+TÄRKEIMMÄT OMINAISUUDET:
+
+1. THE BRIDGE – PAIKALLINEN TIEDOSTONSIIRTO JA LEIKEPÖYTÄ
+• Sisäänrakennettu verkkopalvelin: Avaa IP-osoite tai skannaa QR-koodi puhelimella tiedostojen siirtämiseksi heti.
+• Reaaliaikainen leikepöytä: Lähetä pitkiä salasanoja ja linkkejä puhelimesta televisioon vaivattomasti.
+• Täysin yksityinen: Kaikki siirrot tapahtuvat vain omassa kotiverkossasi.
+
+2. THE FETCHER – MONISÄIKEINEN LATAUSOHJELMA & TV-SELAIN
+• Nopeampi lataus: Lataa APK-tiedostoja ja videoita useilla rinnakkaisilla yhteyksillä.
+• TV-optimoitu selain: Helppo käyttö kaukosäätimellä ja integroitu mainosten esto.
+• Median tunnistus: Tunnistaa ladattavat videot ja ääniraidat automaattisesti.
+
+3. THE HUB – TIEDOSTOJEN HALLINTA & SIDELOAD-SOVELLUKSET
+• TV-tiedostoselain: Ruudukko- ja luettelonäkymä sekä USB-muistitikkujen tuki.
+• Piilotettujen sovellusten käynnistin: Avaa puhelinsovellukset, jotka eivät näy TV:n aloitusnäytössä.
+• IPTV-soitin: Toista M3U- ja M3U8-soittolistoja laitteistokiihdytyksellä.
+
+4. THE OPTIMIZER – MUISTINPUHDISTUS JA RAM-TEHOSTIN
+• 1-Klikkauksen RAM-boosti: Sulje taustasovellukset sujuvaa 4K-toistoa varten.
+• Välimuistin syväpuhdistus: Poista väliaikaistiedostot ja vapauta tallennustilaa.
+• APK-jäänteiden poisto: Poista asennustiedostot sovelluksen asennuksen jälkeen.
+
+Optimoi Android TV -kokemuksesi Hubit!-sovelluksella!"
+nb,Norwegian,Hubit: TV Filer og Webbro,"Overfør filer fra mobil til TV, last ned lenker og optimaliser Android TV.","Hubit! er det komplette verktøyet for filoverføring, nedlastingsbehandling, medieorganisering og minneoptimalisering på Android TV og Google TV.
+
+Overfør filer, APK-apper, videoer og utklippstavletekster direkte fra telefonen eller PC-en til TV-en din over lokalt Wi-Fi uten ledninger eller USB-minnepinner.
+
+HOVEDFUNKSJONER:
+
+1. THE BRIDGE – LOKAL FILOVERFØRING OG UTKLIPPSTAVLE
+• Innebygd webserver: Åpne IP-adressen eller skann QR-koden fra telefonen for å laste opp filer umiddelbart.
+• Universell utklippstavle: Send passord og lenker direkte til TV-en uten å knote med fjernkontrollen.
+• 100% Lokalt og Trygt: Ingen data sendes ut av ditt lokale hjemmenettverk.
+
+2. THE FETCHER – RASK NEDLASTING OG TV-NETTLESER
+• Flerkildet nedlasting: Hent APK-er, videoer og dokumenter i høy hastighet.
+• TV-tilpasset nettleser: Enkel navigering med fjernkontroll og innebygd annonseblokkering.
+• Mediesniffer: Oppdager automatisk nedlastbare videostrømmer.
+
+3. THE HUB – FILBEHANDLER OG SIDELOAD-APPER
+• TV-filutforsker: Rutenett- og listevisning med støtte for eksterne USB-stasjoner.
+• Sideloaded App Launcher: Start mobilapper som ikke vises på standard TV-startskjerm.
+• IPTV-avspiller: Spill av M3U-spillelister med jevn maskinvareakselerasjon.
+
+4. THE OPTIMIZER – MINNERENS OG RAM-BOOSTER
+• 1-Klikks RAM-boost: Frigjør minne for jevn 4K-avspilling uten hakking.
+• Dyp rensing av hurtigbuffer: Fjern midlertidige filer for å frigjøre lagringsplass.
+• APK-opprydding: Slett installasjonsfiler automatisk etter bruk.
+
+Gjør Android TV-en din raskere med Hubit!"
+el,Greek,Hubit: Αρχεία & Web για TV,"Μεταφορά αρχείων από κινητό σε TV, λήψη συνδέσμων και καθαρισμός μνήμης.","Το Hubit! είναι η ολοκληρωμένη εφαρμογή διαχείρισης και μεταφοράς αρχείων, λήψεων και βελτιστοποίησης για Android TV και Google TV.
+
+Μεταφέρετε αρχεία, εφαρμογές APK, βίντεο και κείμενα από το κινητό ή τον υπολογιστή σας απευθείας στην τηλεόραση μέσω του τοπικού Wi-Fi χωρίς καλώδια ή στικάκια USB.
+
+ΚΥΡΙΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ:
+
+1. THE BRIDGE – ΤΟΠΙΚΗ ΜΕΤΑΦΟΡΑ ΚΑΙ ΠΡΟΧΕΙΡΟ
+• Ενσωματωμένος Web Server: Ανοίξτε την IP ή σαρώστε το QR code από το κινητό για άμεση αποστολή αρχείων.
+• Συγχρονισμός Προχείρου: Στείλτε κωδικούς και συνδέσμους χωρίς πληκτρολόγηση στο τηλεχειριστήριο.
+• Απόλυτη Ιδιωτικότητα: Όλες οι μεταφορές γίνονται αποκλειστικά στο τοπικό οικιακό δίκτυο.
+
+2. THE FETCHER – ΛΗΨΗ ΠΟΛΛΑΠΛΩΝ ΝΗΜΑΤΩΝ & BROWSER TV
+• Γρήγορη Λήψη: Επιταχύνετε τη λήψη APK και βίντεο.
+• Πρόγραμμα Περιήγησης TV: Εύκολη πλοήγηση με τηλεχειριστήριο και αποκλεισμό διαφημίσεων.
+• Αυτόματη Ανίχνευση: Εντοπισμός λήψιμων αρχείων βίντεο κατά την περιήγηση.
+
+3. THE HUB – ΔΙΑΧΕΙΡΙΣΗ ΑΡΧΕΙΩΝ & ΕΦΑΡΜΟΓΕΣ SIDELOAD
+• Διαχειριστής Αρχείων TV: Προβολή πλέγματος/λίστας και υποστήριξη εξωτερικών δίσκων USB.
+• Εκκινητής Εφαρμογών: Άνοιγμα εφαρμογών που δεν εμφανίζονται στην αρχική οθόνη της τηλεόρασης.
+• Αναπαραγωγή IPTV: Υποστήριξη λιστών M3U/M3U8 με ομαλή αναπαραγωγή.
+
+4. THE OPTIMIZER – ΚΑΘΑΡΙΣΜΟΣ ΜΝΗΜΗΣ & RAM BOOST
+• Επιτάχυνση RAM με 1 Κλικ: Απελευθέρωση μνήμης για ομαλή αναπαραγωγή 4K βίντεο.
+• Βαθύς Καθαρισμός Cache: Διαγραφή προσωρινών αρχείων για εξοικονόμηση χώρου.
+• Διαγραφή Περιττών APK: Αφαίρεση αρχείων εγκατάστασης μετά την ολοκλήρωση.
+
+Κάντε την τηλεόρασή σας πιο γρήγορη με το Hubit!"
+cs,Czech,Hubit: Správce souborů pro TV,"Přenos souborů z mobilu do TV, stahování odkazů a optimalizace Android TV.","Hubit! je komplexní nástroj pro přenos souborů, správu stahování, procházení médií a optimalizaci systému Android TV a Google TV.
+
+Přenášejte soubory, instalační balíčky APK, videa a texty schránky z telefonu nebo počítače přímo do televizoru přes místní Wi-Fi bez kabelů nebo USB disků.
+
+HLAVNÍ FUNKCE:
+
+1. THE BRIDGE – MÍSTNÍ PŘENOS SOUBORŮ A SCHRÁNKY
+• Integrovaný webový server: Otevřete zobrazenou IP adresu nebo naskenujte QR kód telefonem pro okamžité odeslání souborů.
+• Univerzální schránka: Posílejte dlouhé texty, hesla a odkazy do TV bez zdlouhavého psaní na ovladači.
+• 100% soukromí: Všechny přenosy probíhají výhradně v rámci vaší domácí sítě.
+
+2. THE FETCHER – RYCHLÉ STAHOVÁNÍ & TV PROHLÍŽEČ
+• Vícestopé stahování: Zvyšte rychlost stahování APK, videí a dokumentů.
+• Webový prohlížeč pro TV: Snadné procházení dálkovým ovladačem s integrovaným blokováním reklam.
+• Detektor médií: Automaticky zachycuje streamy videa a audia ke stažení.
+
+3. THE HUB – SPRÁVCE SOUBORŮ & SIDELOAD APLIKACE
+• Průzkumník souborů TV: Zobrazení mřížky/seznamu a podpora externích USB disků.
+• Spouštěč skrytých aplikací: Spouštějte mobilní aplikace, které se nezobrazují na hlavní obrazovce TV.
+• IPTV přehrávač: Přehrávejte seznamy skladeb M3U/M3U8 s hardwarovou akcelerací.
+
+4. THE OPTIMIZER – ČIŠTĚNÍ PAMĚTI A ZRYCHLENÍ RAM
+• 1-Kliknutí RAM Boost: Uvolněte operační paměť pro plynulé přehrávání 4K videí.
+• Hloubkové čištění mezipaměti: Odstraňte dočasné soubory a uvolněte úložný prostor.
+• Odstranění zbytků APK: Automaticky smažte instalační soubory po dokončení instalace.
+
+Získejte maximum ze své Android TV s aplikací Hubit!"
+hu,Hungarian,Hubit: TV Fájlkezelő és Web,"Fájlátvitel telefonról TV-re, linkek letöltése és az Android TV gyorsítása.","A Hubit! egy all-in-one fájlátviteli, letöltéskezelő, médiaböngésző és rendszeroptimalizáló eszköz Android TV és Google TV készülékekhez.
+
+Küldjön fájlokat, APK alkalmazásokat, videókat és vágólap-szövegeket telefonjáról vagy számítógépéről közvetlenül a tévére a helyi Wi-Fi hálózaton keresztül, kábelek vagy pendrive-ok nélkül.
+
+FŐBB JELLEMZŐK:
+
+1. THE BRIDGE – HELYI FÁJL- ÉS VÁGÓLAP-ÁTVITEL
+• Beépített webszerver: Nyissa meg az IP-címet vagy olvassa be a QR-kódot a telefonjával a fájlok azonnali feltöltéséhez.
+• Valós idejű vágólap: Küldjön hosszú szövegeket, jelszavakat és linkeket a tévére a távirányítóval való gépelés nélkül.
+• Teljes adatvédelem: Minden adatátvitel kizárólag a helyi otthoni hálózaton belül történik.
+
+2. THE FETCHER – TÖBBSZÁLAS LETÖLTŐ ÉS TV BÖNGÉSZŐ
+• Gyorsított letöltés: Töltsön le APK-kat és videókat több párhuzamos kapcsolattal.
+• TV-re optimalizált böngésző: Kényelmes távirányítós vezérlés beépített hirdetésblokkolóval.
+• Médiafelismerő: Automatikusan felismeri a letölthető videó- és hangfolyamokat.
+
+3. THE HUB – MÉDIAKÖNYVTÁR ÉS FÁJLKEZELŐ
+• TV Fájlböngésző: Rács és lista nézet külső USB-meghajtók teljes támogatásával.
+• Rejtett alkalmazások indítója: Futtassa a kezdőképernyőn nem megjelenő mobilos appokat.
+• IPTV Lejátszó: M3U és M3U8 lejátszási listák zökkenőmentes hardveres lejátszása.
+
+4. THE OPTIMIZER – MEMÓRIATISZTÍTÁS ÉS RAM GYORSÍTÁS
+• 1-Kattintásos RAM-felszabadítás: Háttérfolyamatok leállítása az akadozásmentes 4K videókért.
+• Mély gyorsítótár-takarítás: Rendszerszemét törlése értékes tárhely felszabadításához.
+• Maradék APK-k törlése: Telepítőcsomagok automatikus eltávolítása a sikeres telepítés után.
+
+Tegye még okosabbá Android TV készülékét a Hubit! segítségével!"
+ro,Romanian,Hubit: Fisiere si Web pe TV,"Transferă fișiere pe TV, descarcă linkuri și optimizează-ți Android TV-ul.","Hubit! este soluția completă de transfer de fișiere, gestionare a descărcărilor, explorare media și optimizare a sistemului pentru Android TV și Google TV.
+
+Transferați fișiere, aplicații APK, videoclipuri și texte direct de pe telefon sau PC pe televizor prin rețeaua Wi-Fi locală, fără cabluri sau stick-uri USB.
+
+CARACTERISTICI PRINCIPALE:
+
+1. THE BRIDGE – TRANSFER LOCAL ȘI CLIPBOARD
+• Server Web Încorporat: Deschideți adresa IP afișată sau scanați codul QR de pe telefon pentru a trimite fișiere instantaneu.
+• Clipboard Universal: Trimiteți texte lungi, parole și linkuri direct pe TV fără tastare anevoioasă din telecomandă.
+• 100% Privat: Toate datele rămân strict în rețeaua dvs. Wi-Fi de acasă.
+
+2. THE FETCHER – DESCĂRCARE MULTI-THREAD & BROWSER TV
+• Descărcare Accelerată: Descărcați pachete APK, videoclipuri și fișiere mari cu viteză sporită.
+• Browser Web pentru TV: Navigare adaptată pentru telecomandă cu blocare integrată a reclamelor.
+• Detector Media: Identifică și descarcă automat fluxurile video și audio întâlnite pe web.
+
+3. THE HUB – BIBLIOTECĂ MEDIA ȘI MANAGER DE FIȘIERE
+• Explorator de Fișiere TV: Vizualizare grilă/listă cu suport complet pentru memorii USB externe.
+• Lansator de Aplicații Sideloaded: Deschideți aplicații mobile care nu apar pe ecranul principal TV.
+• Player IPTV: Încărcați liste M3U/M3U8 cu redare fluentă accelerată hardware.
+
+4. THE OPTIMIZER – CURĂȚARE MEMORIE ȘI RAM BOOSTER
+• Boost RAM cu 1 Clic: Eliberați memoria RAM pentru o redare video 4K fără întreruperi.
+• Curățare Profundă Cache: Ștergeți fișierele temporare pentru a elibera spațiul de stocare.
+• Ștergere APK-uri Reziduale: Eliminați instalatoarele APK după finalizarea instalării.
+
+Bucurați-vă de o experiență superioară pe Android TV cu Hubit!"
+uk,Ukrainian,Hubit: Файли та Мережа на ТВ,"Передача файлів з телефону на ТВ, швидке завантаження та очищення пам'яті.","Hubit! — це універсальний інструмент для передачі файлів, керування завантаженнями, медіатекою та оптимізації системи для Android TV та Google TV.
+
+Передавайте файли, APK-додатки, відео та текст буфера обміну зі смартфона або комп'ютера безпосередньо на телевізор через локальну мережу Wi-Fi без кабелів та USB-накопичувачів.
+
+ГОЛОВНІ ОСОБЛИВОСТІ:
+
+1. THE BRIDGE – ЛОКАЛЬНА ПЕРЕДАЧА ФАЙЛІВ ТА БУФЕРА
+• Вбудований веб-сервер: Відкрийте IP-адресу або відскануйте QR-код телефоном для миттєвої відправки файлів на ТВ.
+• Буфер обміну в реальному часі: Відправляйте паролі та довгі посилання з телефону без набору пультом.
+• Повна конфіденційність: Усі дані залишаються виключно всередині вашої домашньої мережі.
+
+2. THE FETCHER – БАГАТОПОТОКОВИЙ ЗАВАНТАЖУВАЧ ТА ТВ-БРАУЗЕР
+• Прискорене завантаження: Швидке скачування APK, відео та файлів у кілька потоків.
+• ТВ-браузер: Зручна навігація пультом з вбудованим блокуванням реклами.
+• Медіа-детектор: Автоматичне виявлення посилань на відео та аудіо під час серфінгу.
+
+3. THE HUB – ФАЙЛОВИЙ МЕНЕДЖЕР ТА ПРИХОВАНІ ДОДАТКИ
+• Провідник файлів для ТВ: Перегляд сіткою або списком, підтримка зовнішніх USB-дисків.
+• Запуск сторонніх додатків: Відкривайте мобільні додатки, невидимі на головному екрані TV.
+• Програвач IPTV: Відтворення списків каналів M3U/M3U8 з апаратним прискоренням.
+
+4. THE OPTIMIZER – ОЧИЩЕННЯ ПАМ'ЯТІ ТА ПРИСКОРЕННЯ RAM
+• Очищення RAM в 1 клік: Звільняйте оперативну пам'ять для плавного перегляду 4K відео.
+• Глибоке очищення кешу: Видаляйте тимчасові системні файли для збільшення вільного місця.
+• Видалення залишкових APK: Автоматичне видалення інсталяторів після встановлення додатків.
+
+Зробіть свій Android TV ще зручнішим разом із Hubit!"
+he,Hebrew,Hubit: קבצים ורשת לטלוויזיה,"העברת קבצים מהטלפון לטלוויזיה, הורדת קישורים וניקוי זיכרון מהיר.","אפליקציית Hubit! היא כלי הכל-באחד להעברת קבצים, ניהול הורדות, ארגון מדיה וייעול זיכרון עבור מכשירי Android TV ו-Google TV.
+
+העבירו קבצים, אפליקציות APK, סרטים וקישורים ישירות מהסמארטפון או המחשב אל הטלוויזיה דרך רשת ה-Wi-Fi הביתית ללא צורך בכבלים או בכונני USB.
+
+תכונות עיקריות:
+
+1. THE BRIDGE – העברת קבצים ולוח גזירים ברשת מקומית
+• שרת אינטרנט מובנה: פתחו את כתובת ה-IP או סרקו את קוד ה-QR מהנייד להעלאת קבצים מיידית.
+• סנכרון לוח גזירים בזמן אמת: שלחו טקסטים, סיסמאות וקישורים ישירות לטלוויזיה ללא הקלדה מסורבלת בשלט.
+• פרטיות מלאה: כל הנתונים מועברים אך ורק בתוך הרשת הביתית שלכם.
+
+2. THE FETCHER – מנהל הורדות מרובה חיבורים ודפדפן לטלוויזיה
+• הורדה מואצת: הורדת קובצי APK, וידאו ומסמכים במהירות גבוהה.
+• דפדפן אינטרנט מותאם לטלוויזיה: ניווט נוח באמצעות השלט עם חוסם פרסומות מובנה.
+• זיהוי מדיה אוטומטי: לכידת קישורי וידאו ושמע להורדה תוך כדי גלישה.
+
+3. THE HUB – סייר קבצים והפעלת אפליקציות
+• סייר קבצים לטלוויזיה: תצוגת רשת/רשימה ותמיכה בכונני USB חיצוניים.
+• מפעיל אפליקציות Sideload: פתיחת אפליקציות שאינן מופיעות במסך הבית הראשי של הטלוויזיה.
+• נגן IPTV: ניגון רשימות M3U/M3U8 בצורה חלקה ומהירה.
+
+4. THE OPTIMIZER – ניקוי זיכרון והאצת ביצועים
+• שחרור RAM בלחיצה אחת: סגירת תהליכי רקע להזרמת וידאו 4K חלק ללא תקיעות.
+• ניקוי מטמון עמוק: מחיקת קבצים זמניים לפינוי שטח אחסון יקר.
+• מחיקת שאריות APK: הסרת קובצי התקנה לאחר סיום ההתקנה.
+
+שפרו את חוויית השימוש ב-Android TV שלכם עם Hubit!"
+ms,Malay,Hubit: Fail & Web TV Bridge,"Pindah fail dari telefon ke TV, muat turun pautan dan optimumkan Android TV.","Hubit! ialah aplikasi utiliti lengkap untuk pemindahan fail, pengurusan muat turun, pengatur media dan pengoptimum sistem pada Android TV dan Google TV.
+
+Pindahkan fail, pakej APK, video dan pautan teks dari telefon pintar atau komputer terus ke televisyen anda melalui Wi-Fi tempatan tanpa wayar atau pemacu USB.
+
+CIRI-CIRI UTAMA:
+
+1. THE BRIDGE – PEMINDAHAN FAIL & PAPAN KERATAN TEMPATAN
+• Pelayan Web Terbina: Buka alamat IP atau imbas kod QR dari telefon untuk memuat naik fail ke TV dengan pantas.
+• Papan Keratan Universal: Hantar teks panjang, kata laluan dan pautan dari telefon tanpa perlu menaip menggunakan alat kawalan jauh.
+• 100% Peribadi: Semua data kekal berada dalam rangkaian Wi-Fi rumah anda sahaja.
+
+2. THE FETCHER – PENGURUS MUAT TURUN & PELAYAR TV
+• Muat Turun Berbilang Sambungan: Mempercepatkan muat turun fail APK, video dan dokumen.
+• Pelayar Web Mesra TV: Navigasi mudah dengan alat kawalan jauh berserta penyekat iklan terbina.
+• Pengesan Media Pintar: Mengesan strim video dan audio yang boleh dimuat turun secara automatik.
+
+3. THE HUB – PENGURUS FAIL & APLIKASI SIDELOAD
+• Pengurus Fail TV: Paparan grid atau senarai dengan sokongan penuh untuk pemacu USB.
+• Pelancar Aplikasi Tersembunyi: Buka aplikasi mudah alih yang tidak dipaparkan pada skrin utama TV.
+• Pemain IPTV: Mainkan senarai main M3U/M3U8 dengan lancar disokong pecutan perkakasan.
+
+4. THE OPTIMIZER – PEMBERSIH MEMORI & PENINGKAT RAM
+• 1-Klik Peningkat RAM: Bebaskan memori untuk tontonan video 4K yang lancar tanpa gangguan.
+• Pembersihan Cache Mendalam: Padam fail sementara untuk menjimatkan ruang storan.
+• Pembersihan APK Sisa: Padamkan fail pemasang APK secara automatik selepas aplikasi dipasang.
+
+Tingkatkan prestasi Android TV anda dengan Hubit!"
+fa,Persian,Hubit: انتقال فایل به تلویزیون,انتقال سریع فایل از گوشی به تلویزیون، دانلود لینک و بهینه‌سازی حافظه.,"برنامه Hubit! یک ابزار همه‌کاره برای انتقال فایل، مدیریت دانلود، مرور فایل‌های رسانه‌ای و بهینه‌سازی حافظه مخصوص Android TV و Google TV است.
+
+فایل‌ها، برنامه‌های APK، ویدیوها و لینک‌ها را مستقیماً از گوشی یا رایانه خود از طریق شبکه Wi-Fi محلی بدون نیاز به کابل یا فلش USB به تلویزیون منتقل کنید.
+
+ویژگی‌های کلیدی:
+
+1. THE BRIDGE – انتقال فایل و متن کلیپ‌بورد در شبکه محلی
+• سرور وب داخلی: آدرس IP نمایش‌داده‌شده را باز کنید یا کد QR را با گوشی اسکن کنید تا فایل‌ها سریعاً به تلویزیون منتقل شوند.
+• همگام‌سازی کلیپ‌بورد: ارسال متن‌های طولانی و رمزهای عبور بدون نیاز به تایپ با کنترل تلویزیون.
+• امنیت و حریم خصوصی: تمام اطلاعات در شبکه محلی منزل شما پردازش می‌شوند.
+
+2. THE FETCHER – دانلود منیجر چنداتصاله و مرورگر تلویزیون
+• دانلود پرسرعت: دانلود فایل‌های APK و ویدیوها با سرعت بسیار بالا.
+• مرورگر وب مخصوص تلویزیون: پیمایش آسان با ریموت کنترل به همراه مسدودکننده تبلیغات داخلی.
+• دریافت خودکار رسانه: شناسایی لینک‌های ویدیویی و صوتی قابل دانلود حین مرور وب.
+
+3. THE HUB – مدیریت فایل و برنامه‌های جانبی
+• فایل منیجر تلویزیون: نمایش شبکه‌ای و لیستی به همراه پشتیبانی از فلش‌مموری USB.
+• اجرای برنامه‌های سایدلود: مشاهده و اجرای برنامه‌هایی که در صفحه اصلی تلویزیون نمایش داده نمی‌شوند.
+• پخش‌کننده IPTV: پشتیبانی از لیست‌های M3U/M3U8 با پخش روان و پرسرعت.
+
+4. THE OPTIMIZER – افزایش سرعت رم و پاکسازی حافظه
+• بوست رم با ۱ کلیک: آزاد کردن حافظه موقت برای پخش روان ویدیوهای 4K بدون لگ.
+• پاکسازی عمیق کش: حذف فایل‌های موقت اضافی و بازگرداندن فضای خالی حافظه.
+• حذف فایل‌های نصبی APK: شناسایی و پاکسازی فایل‌های نصبی بعد از اتمام نصب برنامه‌ها.
+
+با Hubit! نهایت کارایی را در تلویزیون هوشمند خود تجربه کنید!"
+bn,Bengali,Hubit: TV ফাইল ও ওয়েব ব্রিজ,"মোবাইল থেকে টিভিতে ফাইল পাঠান, লিঙ্ক ডাউনলোড করুন এবং মেমরি খালি করুন।","Hubit! হলো Android TV এবং Google TV ডিভাইসের জন্য একটি সর্বাত্মক ফাইল ট্রান্সফার, ডাউনলোড ম্যানেজার, ফাইল ব্রাউজার এবং মেমরি অপ্টিমাইজার টুল।
+
+কোনো প্রকার কেবল বা পেনড্রাইভ ছাড়াই আপনার মোবাইল ফোন বা কম্পিউটার থেকে সরাসরি লোকাল Wi-Fi নেটওয়ার্কের মাধ্যমে ফাইল, APK অ্যাপ, ভিডিও এবং টেক্সট টিভিতে পাঠান।
+
+প্রধান বৈশিষ্ট্যসমূহ:
+
+১. THE BRIDGE – লোকাল ফাইল ও ক্লিপবোর্ড ট্রান্সফার
+• ইন-বিল্ট ওয়েব সার্ভার: টিভিতে প্রদর্শিত IP ওপেন করুন বা QR কোড স্ক্যান করে মোবাইল থেকে দ্রুত ফাইল পাঠান।
+• রিয়েল-টাইম ক্লিপবোর্ড: রিমোট দিয়ে লেখার ঝামেলা ছাড়াই ফোন থেকে পাসওয়ার্ড ও লিঙ্ক সরাসরি টিভিতে পাঠান।
+• সম্পূর্ণ নিরাপদ ও লোকাল: সমস্ত তথ্য কেবল আপনার নিজস্ব হোম নেটওয়ার্কের ভেতরেই থাকে।
+
+২. THE FETCHER – দ্রুতগতির ডাউনলোড ম্যানেজার ও টিভি ব্রাউজার
+• মাল্টি-থ্রেড ডাউনলোড: একাধিক কানেকশনের মাধ্যমে দ্রুত গতিতে APK ও ভিডিও ডাউনলোড করুন।
+• টিভি ওয়েব ব্রাউজার: রিমোট দিয়ে সহজে ব্রাউজ করুন, সাথে আছে বিল্ট-ইন অ্যাড ব্লকার।
+• মিডিয়া ডিটেক্টর: ওয়েব ব্রাউজ করার সময় ডাউনলোডযোগ্য অডিও-ভিডিও লিঙ্ক স্বয়ংক্রিয়ভাবে শনাক্ত করে।
+
+৩. THE HUB – মিডিয়া লাইব্রেরি ও টিভি ফাইল ম্যানেজার
+• টিভি ফাইল ব্রাউজার: গ্রিড এবং লিস্ট ভিউ সহ এক্সটার্নাল USB পেনড্রাইভ সাপোর্ট।
+• সাইডলোডেড অ্যাপ লঞ্চার: সাধারণ হোম স্ক্রিনে দেখা যায় না এমন মোবাইল অ্যাপগুলো সহজে চালু করুন।
+• IPTV প্লেয়ার: নির্বিঘ্নে M3U/M3U8 প্লেলিস্টের লাইভ টিভি উপভোগ করুন।
+
+৪. THE OPTIMIZER – র‍্যাম বুস্টার ও স্টোরেজ ক্লিনার
+• ১-ক্লিক র‍্যাম বুস্ট: ব্যাকগ্রাউন্ড অ্যাপস বন্ধ করে 4K ভিডিও কোনো ল্যাগ ছাড়াই দেখুন।
+• ডিপ ক্যাশ ক্লিনার: অপ্রয়োজনীয় সিস্টেম ও অ্যাপ ক্যাশ মুছে স্টোরেজ খালি করুন।
+• অবশিষ্ট APK মুছে ফেলা: অ্যাপ ইনস্টল হয়ে যাওয়ার পর অপ্রয়োজনীয় ইনস্টলার APK স্বয়ংক্রিয়ভাবে মুছে ফেলুন।
+
+Hubit! এর সাথে আপনার Android TV ব্যবহার করুন আরও সহজে ও দ্রুতগতিতে!"

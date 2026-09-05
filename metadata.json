@@ -1,0 +1,6 @@
+{
+  "name": "Hubit!",
+  "description": "Siêu ứng dụng hội tụ giao thông dữ liệu trên Android TV: Web Dashboard kết nối không rào cản, Multi-thread Downloader, Link Sniffer, Smart Library & ExoPlayer, Sideload Launcher & Optimizer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
