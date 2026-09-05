@@ -152,6 +152,7 @@ class MultiThreadDownloader(
 
                 val responseBody = response.body ?: return@use
                 val isPartial = response.code == 206
+                val append = isPartial && resumeOffset > 0
                 val totalLength = if (isPartial) {
                     resumeOffset + responseBody.contentLength()
                 } else {
@@ -159,46 +160,44 @@ class MultiThreadDownloader(
                 }
 
                 val inputStream = responseBody.byteStream()
-                // If partial, append to existing file, otherwise overwrite
-                val outputStream = FileOutputStream(destinationFile, isPartial && resumeOffset > 0)
-                val buffer = ByteArray(32768)
-
-                var bytesDownloaded = if (isPartial) resumeOffset else 0L
+                var bytesDownloaded = if (append) resumeOffset else 0L
                 var lastTime = System.currentTimeMillis()
                 var lastBytes = bytesDownloaded
 
-                var read = 0
-                while (isActive && inputStream.read(buffer).also { read = it } != -1) {
-                    outputStream.write(buffer, 0, read)
-                    bytesDownloaded += read
+                FileOutputStream(destinationFile, append).use { outputStream ->
+                    val buffer = ByteArray(32768)
+                    var read = 0
+                    while (isActive && inputStream.read(buffer).also { read = it } != -1) {
+                        outputStream.write(buffer, 0, read)
+                        bytesDownloaded += read
 
-                    val now = System.currentTimeMillis()
-                    val timeDiff = now - lastTime
-                    if (timeDiff >= 500) {
-                        val bytesDiff = bytesDownloaded - lastBytes
-                        val speedMbPerSec = (bytesDiff.toDouble() / (1024 * 1024)) / (timeDiff.toDouble() / 1000.0)
-                        val speedStr = String.format("%.1f MB/s • 4 luồng", speedMbPerSec)
+                        val now = System.currentTimeMillis()
+                        val timeDiff = now - lastTime
+                        if (timeDiff >= 500) {
+                            val bytesDiff = bytesDownloaded - lastBytes
+                            val speedMbPerSec = (bytesDiff.toDouble() / (1024 * 1024)) / (timeDiff.toDouble() / 1000.0)
+                            val speedStr = String.format("%.1f MB/s • 4 luồng", speedMbPerSec)
 
-                        val percent = if (totalLength > 0) ((bytesDownloaded * 100) / totalLength).toInt().coerceIn(0, 99) else 50
+                            val percent = if (totalLength > 0) ((bytesDownloaded * 100) / totalLength).toInt().coerceIn(0, 99) else 50
 
-                        val existing = dao.getItemById(itemId)
-                        if (existing != null) {
-                            dao.updateItem(
-                                existing.copy(
-                                    fileSize = if (totalLength > 0) totalLength else bytesDownloaded,
-                                    status = "DOWNLOADING",
-                                    progress = percent,
-                                    downloadSpeed = speedStr
+                            val existing = dao.getItemById(itemId)
+                            if (existing != null) {
+                                dao.updateItem(
+                                    existing.copy(
+                                        fileSize = if (totalLength > 0) totalLength else bytesDownloaded,
+                                        status = "DOWNLOADING",
+                                        progress = percent,
+                                        downloadSpeed = speedStr
+                                    )
                                 )
-                            )
-                        }
+                            }
 
-                        lastTime = now
-                        lastBytes = bytesDownloaded
+                            lastTime = now
+                            lastBytes = bytesDownloaded
+                        }
                     }
+                    outputStream.flush()
                 }
-                outputStream.flush()
-                outputStream.close()
 
                 if (isActive) {
                     val existing = dao.getItemById(itemId)
