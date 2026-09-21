@@ -1,5 +1,8 @@
 package com.example.ui.screens
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +30,9 @@ import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Storage
+import androidx.compose.material.icons.filled.PieChart
+import androidx.compose.material.icons.filled.FolderZip
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -65,8 +71,23 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
     val memoryInfo by viewModel.systemMemoryInfo.collectAsState()
     val allItems by viewModel.allHubItems.collectAsState()
     val optProgress by viewModel.optimizationProgress.collectAsState()
+    val diskAnalysis by viewModel.diskAnalysis.collectAsState()
 
     val installedApkResiduals = allItems.filter { it.type == "APK" }
+
+    val targetRamPercent = (memoryInfo?.ramUsagePercent ?: 62) / 100f
+    val animatedRamPercent by animateFloatAsState(
+        targetValue = targetRamPercent,
+        animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing),
+        label = "ramUsagePercent"
+    )
+
+    val targetStoragePercent = (memoryInfo?.storageUsagePercent ?: 52) / 100f
+    val animatedStoragePercent by animateFloatAsState(
+        targetValue = targetStoragePercent,
+        animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing),
+        label = "storageUsagePercent"
+    )
 
     LazyColumn(
         modifier = Modifier
@@ -144,7 +165,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                                 Text("${usedRam}MB / ${totalRam}MB", color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                                 Spacer(modifier = Modifier.height(6.dp))
                                 LinearProgressIndicator(
-                                    progress = { (memoryInfo?.ramUsagePercent ?: 62) / 100f },
+                                    progress = { animatedRamPercent },
                                     modifier = Modifier.fillMaxWidth().height(8.dp).clip(CircleShape),
                                     color = CyanPrimary,
                                     trackColor = DarkBorder
@@ -171,7 +192,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                                 Text("${usedGb}GB / ${totalGb}GB", color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                                 Spacer(modifier = Modifier.height(6.dp))
                                 LinearProgressIndicator(
-                                    progress = { (memoryInfo?.storageUsagePercent ?: 52) / 100f },
+                                    progress = { animatedStoragePercent },
                                     modifier = Modifier.fillMaxWidth().height(8.dp).clip(CircleShape),
                                     color = EmeraldTertiary,
                                     trackColor = DarkBorder
@@ -347,13 +368,136 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
 
                                 Button(
                                     onClick = { viewModel.deleteHubItem(apkItem.id) },
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f))
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f)),
+                                    modifier = Modifier.dpadFocusable(onClick = { viewModel.deleteHubItem(apkItem.id) })
                                 ) {
                                     Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(stringResource(R.string.optimizer_btn_delete_apk), fontSize = 12.sp)
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Section: Deep Disk & Junk Analyzer
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = DarkSurface),
+                shape = RoundedCornerShape(16.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, CyanPrimary.copy(alpha = 0.5f))
+            ) {
+                Column(modifier = Modifier.padding(20.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.PieChart, contentDescription = null, tint = CyanPrimary, modifier = Modifier.size(28.dp))
+                            Spacer(modifier = Modifier.width(10.dp))
+                            Column {
+                                Text(stringResource(R.string.disk_analyzer_title), color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                                Text(stringResource(R.string.disk_analyzer_desc), color = TextSecondary, fontSize = 12.sp)
+                            }
+                        }
+
+                        Button(
+                            onClick = { viewModel.runDiskAnalysis() },
+                            colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
+                            modifier = Modifier.dpadFocusable(onClick = { viewModel.runDiskAnalysis() }),
+                            shape = RoundedCornerShape(10.dp)
+                        ) {
+                            Text(stringResource(R.string.disk_analyzer_scan_btn), color = Color.Black, fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    if (diskAnalysis.totalJunkBytes > 0) {
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color.Black.copy(alpha = 0.3f), RoundedCornerShape(12.dp))
+                                .padding(14.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column {
+                                Text(
+                                    text = "Phát hiện ${formatFileSize(diskAnalysis.totalJunkBytes)} dung lượng rác (${diskAnalysis.totalJunkFiles} files)",
+                                    color = AccentOrange,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 13.sp
+                                )
+                                Text("Bao gồm APK thừa, file tải dở & bộ đệm TV", color = TextSecondary, fontSize = 11.sp)
+                            }
+
+                            Button(
+                                onClick = { viewModel.clearTvJunk() },
+                                colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
+                                modifier = Modifier.dpadFocusable(onClick = { viewModel.clearTvJunk() }),
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                Icon(Icons.Default.DeleteSweep, contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    stringResource(R.string.disk_analyzer_one_click_clean, formatFileSize(diskAnalysis.totalJunkBytes)),
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        diskAnalysis.categories.forEach { cat ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp)
+                                    .background(Color.Black.copy(alpha = 0.2f), RoundedCornerShape(8.dp))
+                                    .padding(10.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        when (cat.id) {
+                                            "APKS" -> Icons.Default.Android
+                                            "CACHE" -> Icons.Default.Speed
+                                            "CHUNKS" -> Icons.Default.FolderZip
+                                            else -> Icons.Default.Storage
+                                        },
+                                        contentDescription = null,
+                                        tint = CyanPrimary,
+                                        modifier = Modifier.size(18.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Column {
+                                        Text(cat.title, color = TextPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                        Text(cat.description, color = TextSecondary, fontSize = 10.sp)
+                                    }
+                                }
+
+                                Text(
+                                    text = formatFileSize(cat.totalSizeBytes),
+                                    color = EmeraldTertiary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp
+                                )
+                            }
+                        }
+                    } else if (diskAnalysis.isCleaned) {
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.CheckCircle, contentDescription = null, tint = EmeraldTertiary, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(stringResource(R.string.disk_analyzer_no_junk), color = EmeraldTertiary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }

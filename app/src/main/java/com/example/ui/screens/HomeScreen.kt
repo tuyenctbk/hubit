@@ -1,6 +1,12 @@
 package com.example.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -90,6 +96,17 @@ fun HomeScreen(
 
     val webDashboardUrl = "http://$localIp:8080"
 
+    val infiniteTransition = rememberInfiniteTransition(label = "serverStatusPulse")
+    val pulseAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.3f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(900, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulseAlpha"
+    )
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -138,14 +155,17 @@ fun HomeScreen(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Surface(
                                     shape = CircleShape,
-                                    color = if (isServerRunning) EmeraldTertiary.copy(alpha = 0.2f) else Color.Red.copy(alpha = 0.2f),
+                                    color = if (isServerRunning) EmeraldTertiary.copy(alpha = if (isServerRunning) pulseAlpha * 0.4f else 0.2f) else Color.Red.copy(alpha = 0.2f),
                                     modifier = Modifier.padding(end = 10.dp)
                                 ) {
                                     Box(
                                         modifier = Modifier
                                             .padding(8.dp)
                                             .size(10.dp)
-                                            .background(if (isServerRunning) EmeraldTertiary else Color.Red, CircleShape)
+                                            .background(
+                                                color = if (isServerRunning) EmeraldTertiary.copy(alpha = pulseAlpha) else Color.Red,
+                                                shape = CircleShape
+                                            )
                                     )
                                 }
                                 Text(
@@ -494,7 +514,8 @@ fun RecentItemContextCard(
                 "APK" -> {
                     Button(
                         onClick = { onInstallApk(item.pathOrUrl) },
-                        colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary)
+                        colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
+                        modifier = Modifier.dpadFocusable(onClick = { onInstallApk(item.pathOrUrl) })
                     ) {
                         Icon(Icons.Default.Android, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -504,7 +525,8 @@ fun RecentItemContextCard(
                 "VIDEO" -> {
                     Button(
                         onClick = { onPlayVideo(item.title, item.pathOrUrl) },
-                        colors = ButtonDefaults.buttonColors(containerColor = AccentOrange)
+                        colors = ButtonDefaults.buttonColors(containerColor = AccentOrange),
+                        modifier = Modifier.dpadFocusable(onClick = { onPlayVideo(item.title, item.pathOrUrl) })
                     ) {
                         Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -514,7 +536,8 @@ fun RecentItemContextCard(
                 "LINK" -> {
                     Button(
                         onClick = { onDownloadLink(item.pathOrUrl) },
-                        colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary)
+                        colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
+                        modifier = Modifier.dpadFocusable(onClick = { onDownloadLink(item.pathOrUrl) })
                     ) {
                         Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -522,7 +545,10 @@ fun RecentItemContextCard(
                     }
                 }
                 else -> {
-                    OutlinedButton(onClick = { }) {
+                    OutlinedButton(
+                        onClick = { },
+                        modifier = Modifier.dpadFocusable(onClick = { })
+                    ) {
                         Text(stringResource(R.string.fetcher_action_open), color = TextPrimary)
                     }
                 }

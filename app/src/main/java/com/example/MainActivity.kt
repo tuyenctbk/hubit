@@ -20,6 +20,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CleaningServices
 import androidx.compose.material.icons.filled.Download
@@ -47,7 +54,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -65,6 +75,7 @@ import com.example.ui.screens.HomeScreen
 import com.example.ui.screens.HubScreen
 import com.example.ui.screens.OptimizerScreen
 import com.example.ui.screens.SettingsScreen
+import com.example.ui.screens.SplashScreen
 import androidx.compose.material.icons.filled.Settings
 import com.example.ui.theme.CyanPrimary
 import com.example.ui.theme.DarkBackground
@@ -87,7 +98,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyApplicationTheme {
-                HubitAppContent(viewModel)
+                var showSplash by rememberSaveable { mutableStateOf(true) }
+
+                if (showSplash) {
+                    SplashScreen(
+                        onSplashFinished = { showSplash = false }
+                    )
+                } else {
+                    HubitAppContent(viewModel)
+                }
             }
         }
     }
@@ -204,17 +223,31 @@ fun HubitAppContent(viewModel: HubitViewModel) {
                 }
             }
 
-            // Screen Content View
+            // Screen Content View with animated tab transitions
             Box(modifier = Modifier.weight(1f)) {
-                when (selectedTab) {
-                    0 -> HomeScreen(viewModel, onNavigateTab = { viewModel.selectTab(it) })
-                    1 -> BridgeScreen(viewModel, onOpenUrlInBrowser = { url ->
-                        viewModel.selectTab(2)
-                    })
-                    2 -> FetcherScreen(viewModel)
-                    3 -> HubScreen(viewModel)
-                    4 -> OptimizerScreen(viewModel)
-                    5 -> SettingsScreen(viewModel)
+                AnimatedContent(
+                    targetState = selectedTab,
+                    transitionSpec = {
+                        if (targetState > initialState) {
+                            (slideInHorizontally { width -> width / 4 } + fadeIn(animationSpec = tween(250))) togetherWith
+                                    (slideOutHorizontally { width -> -width / 4 } + fadeOut(animationSpec = tween(200)))
+                        } else {
+                            (slideInHorizontally { width -> -width / 4 } + fadeIn(animationSpec = tween(250))) togetherWith
+                                    (slideOutHorizontally { width -> width / 4 } + fadeOut(animationSpec = tween(200)))
+                        }
+                    },
+                    label = "TabContentAnimation"
+                ) { targetTab ->
+                    when (targetTab) {
+                        0 -> HomeScreen(viewModel, onNavigateTab = { viewModel.selectTab(it) })
+                        1 -> BridgeScreen(viewModel, onOpenUrlInBrowser = { url ->
+                            viewModel.selectTab(2)
+                        })
+                        2 -> FetcherScreen(viewModel)
+                        3 -> HubScreen(viewModel)
+                        4 -> OptimizerScreen(viewModel)
+                        5 -> SettingsScreen(viewModel)
+                    }
                 }
             }
         }

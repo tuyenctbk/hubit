@@ -279,7 +279,15 @@ fun SmartLibrarySubScreen(viewModel: HubitViewModel) {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(filteredItems) { item ->
                     Card(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .dpadFocusable(
+                                shape = RoundedCornerShape(12.dp),
+                                onClick = {
+                                    if (item.type == "VIDEO") viewModel.playVideo(item.title, item.pathOrUrl)
+                                    else if (item.type == "APK") viewModel.installApkFile(item.pathOrUrl)
+                                }
+                            ),
                         colors = CardDefaults.cardColors(containerColor = DarkSurface),
                         shape = RoundedCornerShape(12.dp),
                         border = androidx.compose.foundation.BorderStroke(1.dp, DarkBorder)
@@ -430,7 +438,12 @@ fun SideloadLauncherSubScreen(viewModel: HubitViewModel) {
             ) {
                 items(filteredApps) { app ->
                     Card(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .dpadFocusable(
+                                shape = RoundedCornerShape(16.dp),
+                                onClick = { viewModel.launchInstalledApp(app.packageName) }
+                            ),
                         colors = CardDefaults.cardColors(containerColor = DarkSurface),
                         shape = RoundedCornerShape(16.dp),
                         border = androidx.compose.foundation.BorderStroke(1.dp, DarkBorder)
@@ -629,7 +642,12 @@ fun IptvLiveTvSubScreen(viewModel: HubitViewModel) {
                     val groupName = if (parts.size >= 2) parts[1] else "Live TV"
 
                     Card(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .dpadFocusable(
+                                shape = RoundedCornerShape(14.dp),
+                                onClick = { viewModel.playVideo(channel.title, channel.pathOrUrl) }
+                            ),
                         colors = CardDefaults.cardColors(containerColor = DarkSurface),
                         shape = RoundedCornerShape(14.dp),
                         border = androidx.compose.foundation.BorderStroke(1.dp, DarkBorder)

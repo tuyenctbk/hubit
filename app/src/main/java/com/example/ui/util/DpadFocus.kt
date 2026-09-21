@@ -1,8 +1,8 @@
 package com.example.ui.util
 
-import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -31,7 +31,7 @@ import com.example.ui.theme.CyanPrimary
 
 /**
  * Reusable D-Pad focus modifier for Android TV remote navigation.
- * Highlights focused elements with a glowing border and subtle scale-up animation (1.05x),
+ * Highlights focused elements with a glowing border and subtle spring bounce scale animation (1.05x),
  * provides visual feedback via elevation and border, and handles D-Pad Center / Enter key triggers.
  */
 @Composable
@@ -46,7 +46,10 @@ fun Modifier.dpadFocusable(
     var isFocused by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
         targetValue = if (isFocused) scaleOnFocus else 1.0f,
-        animationSpec = tween(durationMillis = 180, easing = FastOutSlowInEasing),
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        ),
         label = "dpadScale"
     )
 
@@ -60,7 +63,7 @@ fun Modifier.dpadFocusable(
 
     if (isFocused) {
         modifier = modifier
-            .shadow(elevation = 8.dp, shape = shape, spotColor = focusedBorderColor, ambientColor = focusedBorderColor)
+            .shadow(elevation = 10.dp, shape = shape, spotColor = focusedBorderColor, ambientColor = focusedBorderColor)
             .border(BorderStroke(focusedBorderWidth, focusedBorderColor), shape = shape)
     }
 
@@ -72,16 +75,14 @@ fun Modifier.dpadFocusable(
                 onClick = onClick
             )
             .onKeyEvent { keyEvent ->
-                if (keyEvent.type == KeyEventType.KeyUp) {
-                    when (keyEvent.key) {
-                        Key.DirectionCenter, Key.Enter, Key.NumPadEnter, Key.Spacebar -> {
+                when (keyEvent.key) {
+                    Key.DirectionCenter, Key.Enter, Key.NumPadEnter, Key.Spacebar -> {
+                        if (keyEvent.type == KeyEventType.KeyUp) {
                             onClick.invoke()
-                            true
                         }
-                        else -> false
+                        true
                     }
-                } else {
-                    false
+                    else -> false
                 }
             }
     }

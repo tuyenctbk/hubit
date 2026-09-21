@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.sp
 import com.example.ui.theme.*
 import com.example.ui.util.dpadFocusable
 import com.example.ui.viewmodel.HubitViewModel
+import com.example.network.NetworkShareConfig
+import com.example.network.NetworkFileItem
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -56,6 +58,13 @@ data class FileItem(
 @Composable
 fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
     val context = LocalContext.current
+
+    val networkShares by viewModel.networkShares.collectAsState()
+    val activeShareFiles by viewModel.activeShareFiles.collectAsState()
+    val isNetworkLoading by viewModel.isNetworkLoading.collectAsState()
+    val currentConnectedShare by viewModel.currentConnectedShare.collectAsState()
+
+    var isNetworkMode by remember { mutableStateOf(false) }
 
     // Available storage roots (Internal, USB, App Downloads)
     val storageDrives = remember { detectStorageDrives(context) }
@@ -118,9 +127,10 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         storageDrives.forEach { drive ->
-                            val isSelected = selectedDrive == drive.path
+                            val isSelected = !isNetworkMode && selectedDrive == drive.path
                             Surface(
                                 onClick = {
+                                    isNetworkMode = false
                                     selectedDrive = drive.path
                                     currentDirectory = File(drive.path)
                                 },
@@ -129,6 +139,7 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
                                 modifier = Modifier.dpadFocusable(
                                     shape = RoundedCornerShape(10.dp),
                                     onClick = {
+                                        isNetworkMode = false
                                         selectedDrive = drive.path
                                         currentDirectory = File(drive.path)
                                     }
@@ -152,6 +163,36 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
                                         fontSize = 12.sp
                                     )
                                 }
+                            }
+                        }
+
+                        // Local Network Shares Button (SMB/FTP)
+                        Surface(
+                            onClick = { isNetworkMode = true },
+                            shape = RoundedCornerShape(10.dp),
+                            color = if (isNetworkMode) EmeraldTertiary else DarkCard,
+                            modifier = Modifier.dpadFocusable(
+                                shape = RoundedCornerShape(10.dp),
+                                onClick = { isNetworkMode = true }
+                            )
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    Icons.Default.Dns,
+                                    contentDescription = null,
+                                    tint = if (isNetworkMode) Color.Black else EmeraldTertiary,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    "SMB / FTP Mạng",
+                                    color = if (isNetworkMode) Color.Black else TextPrimary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp
+                                )
                             }
                         }
                     }
@@ -188,89 +229,121 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Breadcrumb navigation & Parent Directory button
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    val canGoUp = currentDirectory.parentFile != null && currentDirectory.parentFile?.canRead() == true
-                    Button(
-                        onClick = {
-                            currentDirectory.parentFile?.let { parent ->
-                                if (parent.canRead()) currentDirectory = parent
-                            }
-                        },
-                        enabled = canGoUp,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = IndigoSecondary,
-                            disabledContainerColor = DarkCard
-                        ),
-                        shape = RoundedCornerShape(10.dp),
-                        modifier = Modifier.dpadFocusable(
-                            shape = RoundedCornerShape(10.dp),
+                if (!isNetworkMode) {
+                    // Breadcrumb navigation & Parent Directory button
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        val canGoUp = currentDirectory.parentFile != null && currentDirectory.parentFile?.canRead() == true
+                        Button(
                             onClick = {
                                 currentDirectory.parentFile?.let { parent ->
                                     if (parent.canRead()) currentDirectory = parent
                                 }
+                            },
+                            enabled = canGoUp,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = IndigoSecondary,
+                                disabledContainerColor = DarkCard
+                            ),
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier.dpadFocusable(
+                                shape = RoundedCornerShape(10.dp),
+                                onClick = {
+                                    currentDirectory.parentFile?.let { parent ->
+                                        if (parent.canRead()) currentDirectory = parent
+                                    }
+                                }
+                            )
+                        ) {
+                            Icon(Icons.Default.ArrowUpward, contentDescription = stringResource(R.string.file_browser_up_level), modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(stringResource(R.string.file_browser_up_level), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        }
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Surface(
+                            color = DarkCard,
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(Icons.Default.FolderOpen, contentDescription = null, tint = CyanPrimary, modifier = Modifier.size(16.dp))
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = currentDirectory.absolutePath,
+                                    color = TextSecondary,
+                                    fontSize = 12.sp,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
                             }
-                        )
-                    ) {
-                        Icon(Icons.Default.ArrowUpward, contentDescription = stringResource(R.string.file_browser_up_level), modifier = Modifier.size(16.dp))
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(stringResource(R.string.file_browser_up_level), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        }
                     }
 
-                    Spacer(modifier = Modifier.width(12.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                    Surface(
-                        color = DarkCard,
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.weight(1f)
+                    // Filter chips
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(Icons.Default.FolderOpen, contentDescription = null, tint = CyanPrimary, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = currentDirectory.absolutePath,
-                                color = TextSecondary,
-                                fontSize = 12.sp,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                        listOf(
+                            "ALL" to stringResource(R.string.file_filter_all),
+                            "FOLDERS" to stringResource(R.string.file_filter_folders),
+                            "APK" to stringResource(R.string.file_filter_apk),
+                            "VIDEO" to stringResource(R.string.file_filter_video),
+                            "AUDIO" to stringResource(R.string.file_filter_audio)
+                        ).forEach { (type, label) ->
+                            FilterChip(
+                                selected = filterType == type,
+                                onClick = { filterType = type },
+                                label = { Text(label, fontSize = 11.sp) },
+                                colors = FilterChipDefaults.filterChipColors(
+                                    selectedContainerColor = CyanPrimary,
+                                    selectedLabelColor = Color.Black
+                                ),
+                                modifier = Modifier.dpadFocusable(
+                                    shape = RoundedCornerShape(8.dp),
+                                    onClick = { filterType = type }
+                                )
                             )
                         }
                     }
-                }
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                // Filter chips
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    listOf(
-                        "ALL" to stringResource(R.string.file_filter_all),
-                        "FOLDERS" to stringResource(R.string.file_filter_folders),
-                        "APK" to stringResource(R.string.file_filter_apk),
-                        "VIDEO" to stringResource(R.string.file_filter_video),
-                        "AUDIO" to stringResource(R.string.file_filter_audio)
-                    ).forEach { (type, label) ->
-                        FilterChip(
-                            selected = filterType == type,
-                            onClick = { filterType = type },
-                            label = { Text(label, fontSize = 11.sp) },
-                            colors = FilterChipDefaults.filterChipColors(
-                                selectedContainerColor = CyanPrimary,
-                                selectedLabelColor = Color.Black
-                            ),
-                            modifier = Modifier.dpadFocusable(
-                                shape = RoundedCornerShape(8.dp),
-                                onClick = { filterType = type }
+                } else {
+                    // Network Share Connected Header & Share Switcher
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Lan, contentDescription = null, tint = EmeraldTertiary, modifier = Modifier.size(20.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                if (currentConnectedShare != null) "Đang kết nối: ${currentConnectedShare?.name} (${currentConnectedShare?.host})" else "Chọn máy chủ trong mạng LAN để duyệt và phát trực tuyến",
+                                color = TextPrimary,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp
                             )
-                        )
+                        }
+
+                        if (currentConnectedShare != null) {
+                            Button(
+                                onClick = { viewModel.disconnectNetworkShare() },
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f)),
+                                shape = RoundedCornerShape(8.dp),
+                                contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+                                modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(8.dp), onClick = { viewModel.disconnectNetworkShare() })
+                            ) {
+                                Text(stringResource(R.string.network_disconnect), fontSize = 11.sp)
+                            }
+                        }
                     }
                 }
             }
@@ -278,7 +351,191 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Files container
+        if (isNetworkMode) {
+            // Network Browser UI
+            if (currentConnectedShare == null) {
+                // Show list of available shares to connect
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    item {
+                        Text(
+                            stringResource(R.string.network_saved_connections),
+                            color = TextSecondary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 12.sp,
+                            letterSpacing = 1.sp
+                        )
+                    }
+
+                    items(networkShares, key = { it.id }) { share ->
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .dpadFocusable(
+                                    shape = RoundedCornerShape(14.dp),
+                                    onClick = { viewModel.connectNetworkShare(share) }
+                                ),
+                            colors = CardDefaults.cardColors(containerColor = DarkSurface),
+                            shape = RoundedCornerShape(14.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, EmeraldTertiary.copy(alpha = 0.3f))
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Surface(
+                                        shape = RoundedCornerShape(10.dp),
+                                        color = EmeraldTertiary.copy(alpha = 0.15f),
+                                        modifier = Modifier.size(44.dp)
+                                    ) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Icon(Icons.Default.Dns, contentDescription = null, tint = EmeraldTertiary)
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.width(14.dp))
+                                    Column {
+                                        Text(share.name, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                        Spacer(modifier = Modifier.height(2.dp))
+                                        Text("${share.protocol} • ${share.host}:${share.port}${share.basePath}", color = TextSecondary, fontSize = 11.sp)
+                                    }
+                                }
+
+                                Button(
+                                    onClick = { viewModel.connectNetworkShare(share) },
+                                    colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
+                                    shape = RoundedCornerShape(10.dp),
+                                    modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(10.dp), onClick = { viewModel.connectNetworkShare(share) })
+                                ) {
+                                    Icon(Icons.Default.Link, contentDescription = null, tint = Color.Black, modifier = Modifier.size(16.dp))
+                                    Spacer(modifier = Modifier.width(6.dp))
+                                    Text(stringResource(R.string.network_connect_btn), color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Connected share file viewer
+                if (isNetworkLoading) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator(color = CyanPrimary)
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(stringResource(R.string.network_connecting), color = TextPrimary, fontSize = 13.sp)
+                        }
+                    }
+                } else if (activeShareFiles.isEmpty()) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = DarkSurface),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(48.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(Icons.Default.FolderOff, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(48.dp))
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(stringResource(R.string.network_empty_folder), color = TextSecondary, fontSize = 14.sp)
+                        }
+                    }
+                } else {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        items(activeShareFiles, key = { it.path }) { item ->
+                            val isMedia = listOf("mp4", "mkv", "avi", "mov", "webm", "ts", "mp3", "m4a", "flac").any { item.name.endsWith(it, ignoreCase = true) }
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .dpadFocusable(
+                                        shape = RoundedCornerShape(12.dp),
+                                        onClick = {
+                                            if (item.isDirectory) {
+                                                currentConnectedShare?.let { config ->
+                                                    viewModel.connectNetworkShare(config, item.path)
+                                                }
+                                            } else if (isMedia) {
+                                                currentConnectedShare?.let { config ->
+                                                    viewModel.streamNetworkMedia(config, item)
+                                                }
+                                            } else {
+                                                viewModel.showToast("Đã chọn file mạng: ${item.name}")
+                                            }
+                                        }
+                                    ),
+                                shape = RoundedCornerShape(12.dp),
+                                colors = CardDefaults.cardColors(containerColor = DarkSurface),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, if (isMedia) CyanPrimary.copy(alpha = 0.4f) else DarkBorder)
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(14.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Row(
+                                        modifier = Modifier.weight(1f),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Surface(
+                                            shape = RoundedCornerShape(10.dp),
+                                            color = if (item.isDirectory) CyanPrimary.copy(alpha = 0.15f) else if (isMedia) AccentOrange.copy(alpha = 0.15f) else DarkCard,
+                                            modifier = Modifier.size(42.dp)
+                                        ) {
+                                            Box(contentAlignment = Alignment.Center) {
+                                                Icon(
+                                                    if (item.isDirectory) Icons.Default.Folder else if (isMedia) Icons.Default.Movie else Icons.Default.InsertDriveFile,
+                                                    contentDescription = null,
+                                                    tint = if (item.isDirectory) CyanPrimary else if (isMedia) AccentOrange else TextSecondary
+                                                )
+                                            }
+                                        }
+                                        Spacer(modifier = Modifier.width(14.dp))
+                                        Column {
+                                            Text(item.name, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 13.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                            Text(if (item.isDirectory) "Thư mục mạng" else formatFileSize(item.size), color = TextSecondary, fontSize = 11.sp)
+                                        }
+                                    }
+
+                                    if (isMedia) {
+                                        Button(
+                                            onClick = {
+                                                currentConnectedShare?.let { config ->
+                                                    viewModel.streamNetworkMedia(config, item)
+                                                }
+                                            },
+                                            colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
+                                            shape = RoundedCornerShape(8.dp),
+                                            modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(8.dp), onClick = {
+                                                currentConnectedShare?.let { config ->
+                                                    viewModel.streamNetworkMedia(config, item)
+                                                }
+                                            })
+                                        ) {
+                                            Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Color.Black, modifier = Modifier.size(16.dp))
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text("Phát ExoPlayer", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Local Files container
         if (fileList.isEmpty()) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
@@ -334,6 +591,7 @@ fun TvFileBrowserSubScreen(viewModel: HubitViewModel) {
                     )
                 }
             }
+        }
         }
     }
 }

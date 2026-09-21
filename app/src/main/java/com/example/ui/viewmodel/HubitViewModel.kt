@@ -13,10 +13,17 @@ import com.example.data.db.HubItemEntity
 import com.example.data.model.AppSettings
 import com.example.data.model.InstalledAppInfo
 import com.example.data.model.SystemMemoryInfo
+import com.example.fetcher.DownloadService
 import com.example.fetcher.MultiThreadDownloader
 import com.example.hub.SideloadAppManager
 import com.example.optimizer.OptimizationProgress
 import com.example.optimizer.SystemOptimizer
+import com.example.optimizer.DiskUsageAnalyzer
+import com.example.optimizer.DiskAnalysisResult
+import com.example.network.NetworkShareManager
+import com.example.network.NetworkShareConfig
+import com.example.network.NetworkFileItem
+import com.example.ui.screens.formatFileSize
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -77,6 +84,42 @@ class HubitViewModel(application: Application) : AndroidViewModel(application) {
     private val appManager = SideloadAppManager(application)
     private val optimizer = SystemOptimizer(application)
     val optimizationProgress: StateFlow<OptimizationProgress> = optimizer.optimizationProgress
+
+    private val diskAnalyzer = DiskUsageAnalyzer(application)
+    private val _diskAnalysis = MutableStateFlow(DiskAnalysisResult())
+    val diskAnalysis: StateFlow<DiskAnalysisResult> = _diskAnalysis.asStateFlow()
+
+    private val networkShareManager = NetworkShareManager()
+    private val _networkShares = MutableStateFlow<List<NetworkShareConfig>>(
+        listOf(
+            NetworkShareConfig(
+                name = "PC Phim & Nhạc Gia Đình",
+                protocol = "FTP",
+                host = "192.168.1.100",
+                port = 21,
+                username = "tv",
+                basePath = "/Media"
+            ),
+            NetworkShareConfig(
+                name = "Ổ cứng Mạng NAS Synology",
+                protocol = "FTP",
+                host = "192.168.1.200",
+                port = 2121,
+                username = "anonymous",
+                basePath = "/Movies"
+            )
+        )
+    )
+    val networkShares: StateFlow<List<NetworkShareConfig>> = _networkShares.asStateFlow()
+
+    private val _activeShareFiles = MutableStateFlow<List<NetworkFileItem>>(emptyList())
+    val activeShareFiles: StateFlow<List<NetworkFileItem>> = _activeShareFiles.asStateFlow()
+
+    private val _isNetworkLoading = MutableStateFlow(false)
+    val isNetworkLoading: StateFlow<Boolean> = _isNetworkLoading.asStateFlow()
+
+    private val _currentConnectedShare = MutableStateFlow<NetworkShareConfig?>(null)
+    val currentConnectedShare: StateFlow<NetworkShareConfig?> = _currentConnectedShare.asStateFlow()
 
     private var webServer: LocalWebDashboardServer? = null
 
@@ -195,8 +238,7 @@ class HubitViewModel(application: Application) : AndroidViewModel(application) {
             },
             onUrlReceived = { url ->
                 viewModelScope.launch {
-                    downloader.startDownload(url = url, scope = viewModelScope)
-                    showToast("🚀 Đã nhận link! Hubit! bắt đầu tải...")
+                    downloadUrl(url = url)
                 }
             },
             onClipboardReceived = { text ->
@@ -254,32 +296,32 @@ class HubitViewModel(application: Application) : AndroidViewModel(application) {
             baseDir
         }
 
-        downloader.startDownload(
+        DownloadService.startDownload(
+            context = getApplication(),
             url = url,
-            customTitle = customTitle,
-            targetDirectory = targetDir,
-            scope = viewModelScope
+            title = customTitle,
+            targetDir = targetDir.absolutePath
         )
-        showToast("🚀 Đã thêm vào Trình Tải Siêu Tốc (${appSettings.value.maxDownloadThreads} luồng)!")
+        showToast("🚀 Đã thêm vào Trình Tải Nền (${appSettings.value.maxDownloadThreads} luồng)!")
     }
 
     fun pauseDownload(itemId: Int) {
-        downloader.pauseDownload(itemId, viewModelScope)
+        DownloadService.pauseDownload(getApplication(), itemId)
         showToast("⏸️ Đã tạm dừng tiến trình tải")
     }
 
     fun resumeDownload(itemId: Int) {
-        downloader.resumeDownload(itemId, viewModelScope)
+        DownloadService.resumeDownload(getApplication(), itemId)
         showToast("▶️ Tiếp tục tải file từ điểm dừng...")
     }
 
     fun retryDownload(itemId: Int) {
-        downloader.retryDownload(itemId, viewModelScope)
+        DownloadService.retryDownload(getApplication(), itemId)
         showToast("🔄 Đang thử tải lại...")
     }
 
     fun cancelDownload(itemId: Int) {
-        downloader.cancelDownload(itemId, viewModelScope)
+        DownloadService.cancelDownload(getApplication(), itemId)
         showToast("Đã hủy lượt tải")
     }
 
@@ -423,6 +465,69 @@ class HubitViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         return list
+    }
+
+    fun runDiskAnalysis() {
+        viewModelScope.launch {
+            _diskAnalysis.value = _diskAnalysis.value.copy(isScanning = true)
+            val result = diskAnalyzer.analyzeDisk()
+            _diskAnalysis.value = result
+            showToast("🔍 Phân tích bộ nhớ hoàn tất! Phát hiện ${formatFileSize(result.totalJunkBytes)} file rác.")
+        }
+    }
+
+    fun clearTvJunk() {
+        viewModelScope.launch {
+            val freedBytes = diskAnalyzer.clearJunkFiles()
+            _diskAnalysis.value = _diskAnalysis.value.copy(
+                totalJunkBytes = 0L,
+                totalJunkFiles = 0,
+                categories = emptyList(),
+                isCleaned = true
+            )
+            refreshSystemMemory()
+            showToast("✨ Đã dọn dẹp ${formatFileSize(freedBytes)} rác hệ thống và cache TV!")
+        }
+    }
+
+    fun connectNetworkShare(config: NetworkShareConfig, targetPath: String = "") {
+        viewModelScope.launch {
+            _isNetworkLoading.value = true
+            _currentConnectedShare.value = config
+            val res = networkShareManager.listFtpFiles(config, targetPath)
+            _isNetworkLoading.value = false
+            res.onSuccess { files ->
+                _activeShareFiles.value = files
+                showToast("📡 Đã kết nối ổ mạng: ${config.name} (${files.size} mục)")
+            }.onFailure { err ->
+                _activeShareFiles.value = emptyList()
+                showToast("❌ Lỗi kết nối ổ mạng: ${err.message}")
+            }
+        }
+    }
+
+    fun streamNetworkMedia(config: NetworkShareConfig, item: NetworkFileItem) {
+        viewModelScope.launch {
+            showToast("🎬 Đang chuẩn bị phát mạng: ${item.name}...")
+            val cacheDir = getApplication<Application>().cacheDir
+            val res = networkShareManager.prepareMediaForStreaming(config, item, cacheDir)
+            res.onSuccess { localPath ->
+                playVideo(item.name, localPath)
+            }.onFailure { err ->
+                showToast("❌ Lỗi tải luồng media từ mạng: ${err.message}")
+            }
+        }
+    }
+
+    fun disconnectNetworkShare() {
+        _currentConnectedShare.value = null
+        _activeShareFiles.value = emptyList()
+        showToast("Đã ngắt kết nối ổ mạng.")
+    }
+
+    fun addNetworkShare(config: NetworkShareConfig) {
+        _networkShares.value = _networkShares.value + config
+        showToast("Đã lưu kết nối mạng mới: ${config.name}")
     }
 
     override fun onCleared() {

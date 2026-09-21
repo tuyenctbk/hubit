@@ -193,4 +193,41 @@
     <string name="fetcher_sniffer_detected">Media Sniffer</string>
     <string name="optimizer_btn_boost">Boost RAM</string>
     <string name="optimizer_btn_clean_cache">Clean Cache</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_status_network">Initializing TV Web Bridge &amp; Remote...</string>
+    <string name="splash_status_optimizing">Optimizing System Memory &amp; Cache...</string>
+    <string name="splash_status_ready">TV Media Suite Ready!</string>
+
+    <!-- Network SMB / FTP Browser Strings -->
+    <string name="network_shares_title">Local Network Shares (SMB / FTP)</string>
+    <string name="network_shares_desc">Connect to NAS, PC shared folders, or FTP servers to stream movies and music directly</string>
+    <string name="network_connect_btn">Connect</string>
+    <string name="network_connecting">Connecting...</string>
+    <string name="network_connected">Connected to %1$s</string>
+    <string name="network_disconnect">Disconnect</string>
+    <string name="network_protocol_ftp">FTP Server</string>
+    <string name="network_protocol_smb">SMB / Windows Share</string>
+    <string name="network_host_label">Host / IP Address</string>
+    <string name="network_port_label">Port</string>
+    <string name="network_username_label">Username (Anonymous if blank)</string>
+    <string name="network_password_label">Password</string>
+    <string name="network_share_label">Share Name / Folder</string>
+    <string name="network_stream_start">Streaming %1$s via ExoPlayer...</string>
+    <string name="network_empty_folder">No media files found on network share</string>
+    <string name="network_add_connection">Add Network Storage</string>
+    <string name="network_saved_connections">Saved Network Storage</string>
+
+    <!-- Disk Usage Analyzer Strings -->
+    <string name="disk_analyzer_title">Deep TV Disk &amp; Junk Analyzer</string>
+    <string name="disk_analyzer_desc">Scans large unused cache files, obsolete sideloaded APKs, and orphaned temporary data</string>
+    <string name="disk_analyzer_scan_btn">Analyze TV Disk</string>
+    <string name="disk_analyzer_scanning">Scanning TV storage...</string>
+    <string name="disk_analyzer_one_click_clean">One-Click Clear TV Junk (%1$s)</string>
+    <string name="disk_analyzer_no_junk">TV Storage is clean! No large junk files detected.</string>
+    <string name="disk_analyzer_cleaned_toast">Successfully cleared %1$s of junk files!</string>
+    <string name="disk_analyzer_junk_category_apks">Sideloaded APK Installers</string>
+    <string name="disk_analyzer_junk_category_cache">Application Caches &amp; Thumbnails</string>
+    <string name="disk_analyzer_junk_category_chunks">Incomplete Download Fragments</string>
+    <string name="disk_analyzer_junk_category_logs">Crash &amp; Temp Logs</string>
 </resources>

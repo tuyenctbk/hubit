@@ -22,12 +22,19 @@ class MultiThreadDownloader(
     private val context: Context,
     private val hubDao: HubItemDao
 ) {
+    companion object {
+        private val activeJobs = ConcurrentHashMap<Int, Job>()
+
+        fun cancelActiveJob(itemId: Int) {
+            val job = activeJobs.remove(itemId)
+            job?.cancel()
+        }
+    }
+
     private val client = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
-
-    private val activeJobs = ConcurrentHashMap<Int, Job>()
 
     fun startDownload(
         url: String,
@@ -36,7 +43,8 @@ class MultiThreadDownloader(
         scope: CoroutineScope
     ) {
         scope.launch(Dispatchers.IO) {
-            val fileName = customTitle ?: url.substringAfterLast("/").substringBefore("?").ifEmpty { "download_${System.currentTimeMillis()}" }
+            val rawName = url.substringAfterLast("/").substringBefore("?").ifEmpty { "download_${System.currentTimeMillis()}" }
+            val fileName = customTitle ?: rawName
             val fileType = getFileType(fileName)
 
             val targetDir = targetDirectory ?: File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Hubit")
@@ -51,7 +59,7 @@ class MultiThreadDownloader(
                 receivedSource = "DOWNLOADER|$url",
                 status = "DOWNLOADING",
                 progress = 0,
-                downloadSpeed = "Đang kết nối 4 luồng...",
+                downloadSpeed = "Connecting...",
                 timestamp = System.currentTimeMillis()
             )
 
@@ -72,7 +80,7 @@ class MultiThreadDownloader(
             hubDao.updateItem(
                 item.copy(
                     status = "PAUSED",
-                    downloadSpeed = "Tạm dừng (Đã lưu điểm tải)"
+                    downloadSpeed = "Paused (Checkpoint saved)"
                 )
             )
         }
@@ -92,7 +100,7 @@ class MultiThreadDownloader(
             hubDao.updateItem(
                 item.copy(
                     status = "DOWNLOADING",
-                    downloadSpeed = "Đang tiếp tục kết nối..."
+                    downloadSpeed = "Resuming connection..."
                 )
             )
 
@@ -143,7 +151,7 @@ class MultiThreadDownloader(
                         dao.updateItem(
                             currentItem.copy(
                                 status = "FAILED",
-                                downloadSpeed = "Lỗi kết nối HTTP ${response.code}"
+                                downloadSpeed = "HTTP Error ${response.code}"
                             )
                         )
                     }
@@ -176,7 +184,7 @@ class MultiThreadDownloader(
                         if (timeDiff >= 500) {
                             val bytesDiff = bytesDownloaded - lastBytes
                             val speedMbPerSec = (bytesDiff.toDouble() / (1024 * 1024)) / (timeDiff.toDouble() / 1000.0)
-                            val speedStr = String.format("%.1f MB/s • 4 luồng", speedMbPerSec)
+                            val speedStr = String.format("%.1f MB/s • 4 threads", speedMbPerSec)
 
                             val percent = if (totalLength > 0) ((bytesDownloaded * 100) / totalLength).toInt().coerceIn(0, 99) else 50
 
@@ -207,7 +215,7 @@ class MultiThreadDownloader(
                                 fileSize = destinationFile.length(),
                                 status = "COMPLETED",
                                 progress = 100,
-                                downloadSpeed = "Hoàn tất (Đã kiểm tra SHA-256)",
+                                downloadSpeed = "Completed",
                                 timestamp = System.currentTimeMillis()
                             )
                         )
@@ -221,7 +229,7 @@ class MultiThreadDownloader(
                 dao.updateItem(
                     existing.copy(
                         status = "FAILED",
-                        downloadSpeed = "Lỗi: ${e.localizedMessage ?: "Mất kết nối"}"
+                        downloadSpeed = "Error: ${e.localizedMessage ?: "Connection lost"}"
                     )
                 )
             }
@@ -233,9 +241,9 @@ class MultiThreadDownloader(
     private fun getFileType(fileName: String): String {
         return when {
             fileName.endsWith(".apk", true) -> "APK"
-            fileName.endsWith(".mp4", true) || fileName.endsWith(".mkv", true) || fileName.endsWith(".m3u8", true) -> "VIDEO"
-            fileName.endsWith(".mp3", true) || fileName.endsWith(".m4a", true) -> "AUDIO"
-            fileName.endsWith(".jpg", true) || fileName.endsWith(".png", true) -> "IMAGE"
+            fileName.endsWith(".mp4", true) || fileName.endsWith(".mkv", true) || fileName.endsWith(".m3u8", true) || fileName.endsWith(".ts", true) -> "VIDEO"
+            fileName.endsWith(".mp3", true) || fileName.endsWith(".m4a", true) || fileName.endsWith(".wav", true) || fileName.endsWith(".flac", true) -> "AUDIO"
+            fileName.endsWith(".jpg", true) || fileName.endsWith(".png", true) || fileName.endsWith(".webp", true) -> "IMAGE"
             else -> "FILE"
         }
     }
