@@ -1,5 +1,6 @@
 package com.example.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
@@ -12,6 +13,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,6 +27,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,11 +42,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -65,6 +75,11 @@ fun SplashScreen(
     val scale = remember { Animatable(0.7f) }
     val alpha = remember { Animatable(0f) }
     var currentStep by remember { mutableIntStateOf(0) }
+    val focusRequester = remember { FocusRequester() }
+
+    BackHandler {
+        onSplashFinished()
+    }
 
     val infiniteTransition = rememberInfiniteTransition(label = "splashInfinite")
     val rotation by infiniteTransition.animateFloat(
@@ -88,18 +103,19 @@ fun SplashScreen(
     )
 
     LaunchedEffect(Unit) {
-        alpha.animateTo(1f, animationSpec = tween(500))
-        scale.animateTo(1f, animationSpec = tween(600, easing = FastOutSlowInEasing))
+        focusRequester.requestFocus()
+        alpha.animateTo(1f, animationSpec = tween(400))
+        scale.animateTo(1f, animationSpec = tween(500, easing = FastOutSlowInEasing))
 
         currentStep = 1
-        delay(600)
-        currentStep = 2
-        delay(600)
-        currentStep = 3
         delay(500)
+        currentStep = 2
+        delay(500)
+        currentStep = 3
+        delay(400)
 
         // Fade out
-        alpha.animateTo(0f, animationSpec = tween(300))
+        alpha.animateTo(0f, animationSpec = tween(250))
         onSplashFinished()
     }
 
@@ -117,6 +133,19 @@ fun SplashScreen(
                     radius = 1200f
                 )
             )
+            .focusRequester(focusRequester)
+            .focusable()
+            .onKeyEvent { event ->
+                if (event.type == KeyEventType.KeyUp) {
+                    when (event.key) {
+                        Key.DirectionCenter, Key.Enter, Key.NumPadEnter, Key.Spacebar, Key.Back, Key.Escape -> {
+                            onSplashFinished()
+                            true
+                        }
+                        else -> false
+                    }
+                } else false
+            }
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
@@ -281,6 +310,44 @@ fun SplashScreen(
                         fontWeight = FontWeight.Medium
                     )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            // Step Progress Bar
+            val progressFraction = when (currentStep) {
+                1 -> 0.35f
+                2 -> 0.70f
+                3 -> 1.0f
+                else -> 0.15f
+            }
+            LinearProgressIndicator(
+                progress = { progressFraction },
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(3.dp)
+                    .clip(CircleShape),
+                color = CyanPrimary,
+                trackColor = DarkBorder.copy(alpha = 0.6f)
+            )
+
+            Spacer(modifier = Modifier.height(18.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "v1.1",
+                    color = CyanPrimary.copy(alpha = 0.8f),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = " • Press OK or Back to skip",
+                    color = TextSecondary.copy(alpha = 0.6f),
+                    fontSize = 11.sp
+                )
             }
         }
     }

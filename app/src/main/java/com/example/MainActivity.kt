@@ -3,6 +3,7 @@ package com.example
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -38,6 +39,9 @@ import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Wifi
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -45,6 +49,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.NavigationRailItemDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -123,6 +128,17 @@ fun HubitAppContent(viewModel: HubitViewModel) {
     val isWideScreen = configuration.screenWidthDp >= 600
 
     val snackbarHostState = remember { SnackbarHostState() }
+    var showExitDialog by remember { mutableStateOf(false) }
+
+    BackHandler(enabled = true) {
+        if (activeVideo != null) {
+            viewModel.dismissVideoPlayer()
+        } else if (selectedTab != 0) {
+            viewModel.selectTab(0)
+        } else {
+            showExitDialog = true
+        }
+    }
 
     LaunchedEffect(toastMessage) {
         toastMessage?.let {
@@ -259,6 +275,75 @@ fun HubitAppContent(viewModel: HubitViewModel) {
                 videoUrlOrPath = pathOrUrl,
                 viewModel = viewModel,
                 onDismiss = { viewModel.dismissVideoPlayer() }
+            )
+        }
+
+        // TV Exit Confirmation Dialog
+        if (showExitDialog) {
+            AlertDialog(
+                onDismissRequest = { showExitDialog = false },
+                containerColor = DarkSurface,
+                titleContentColor = TextPrimary,
+                textContentColor = TextSecondary,
+                shape = RoundedCornerShape(18.dp),
+                title = {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Surface(
+                            shape = CircleShape,
+                            color = CyanPrimary,
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("H!", color = Color.Black, fontWeight = FontWeight.Black, fontSize = 14.sp)
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Exit Hubit!",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = TextPrimary
+                        )
+                    }
+                },
+                text = {
+                    Text(
+                        text = "Are you sure you want to close Hubit and stop background services?",
+                        fontSize = 14.sp,
+                        color = TextSecondary
+                    )
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            showExitDialog = false
+                            (context as? ComponentActivity)?.finish()
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEF4444)),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.dpadFocusable(
+                            shape = RoundedCornerShape(10.dp),
+                            onClick = {
+                                showExitDialog = false
+                                (context as? ComponentActivity)?.finish()
+                            }
+                        )
+                    ) {
+                        Text("Exit App", color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                },
+                dismissButton = {
+                    OutlinedButton(
+                        onClick = { showExitDialog = false },
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.dpadFocusable(
+                            shape = RoundedCornerShape(10.dp),
+                            onClick = { showExitDialog = false }
+                        )
+                    ) {
+                        Text("Cancel", color = TextPrimary)
+                    }
+                }
             )
         }
     }

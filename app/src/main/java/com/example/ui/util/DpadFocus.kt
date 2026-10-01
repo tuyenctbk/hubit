@@ -20,11 +20,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.ui.theme.CyanPrimary
@@ -74,17 +69,6 @@ fun Modifier.dpadFocusable(
                 indication = null,
                 onClick = onClick
             )
-            .onKeyEvent { keyEvent ->
-                when (keyEvent.key) {
-                    Key.DirectionCenter, Key.Enter, Key.NumPadEnter, Key.Spacebar -> {
-                        if (keyEvent.type == KeyEventType.KeyUp) {
-                            onClick.invoke()
-                        }
-                        true
-                    }
-                    else -> false
-                }
-            }
     }
 
     return modifier

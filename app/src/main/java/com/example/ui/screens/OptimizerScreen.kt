@@ -132,7 +132,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                         Button(
                             onClick = { viewModel.refreshSystemMemory() },
                             colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
-                            modifier = Modifier.dpadFocusable(onClick = { viewModel.refreshSystemMemory() })
+                            modifier = Modifier.dpadFocusable()
                         ) {
                             Icon(Icons.Default.AutoMode, contentDescription = null, tint = Color.White)
                             Spacer(modifier = Modifier.width(6.dp))
@@ -302,7 +302,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                     Button(
                         onClick = { viewModel.startBackgroundOptimization() },
                         colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
-                        modifier = Modifier.dpadFocusable(onClick = { viewModel.startBackgroundOptimization() }),
+                        modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(12.dp)),
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Text(stringResource(R.string.optimizer_btn_start_cleaner), color = Color.Black, fontWeight = FontWeight.ExtraBold)
@@ -369,7 +369,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                                 Button(
                                     onClick = { viewModel.deleteHubItem(apkItem.id) },
                                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f)),
-                                    modifier = Modifier.dpadFocusable(onClick = { viewModel.deleteHubItem(apkItem.id) })
+                                    modifier = Modifier.dpadFocusable()
                                 ) {
                                     Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(4.dp))
@@ -408,7 +408,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                         Button(
                             onClick = { viewModel.runDiskAnalysis() },
                             colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
-                            modifier = Modifier.dpadFocusable(onClick = { viewModel.runDiskAnalysis() }),
+                            modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(10.dp)),
                             shape = RoundedCornerShape(10.dp)
                         ) {
                             Text(stringResource(R.string.disk_analyzer_scan_btn), color = Color.Black, fontWeight = FontWeight.Bold)
@@ -439,7 +439,7 @@ fun OptimizerScreen(viewModel: HubitViewModel) {
                             Button(
                                 onClick = { viewModel.clearTvJunk() },
                                 colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
-                                modifier = Modifier.dpadFocusable(onClick = { viewModel.clearTvJunk() }),
+                                modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(10.dp)),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
                                 Icon(Icons.Default.DeleteSweep, contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))

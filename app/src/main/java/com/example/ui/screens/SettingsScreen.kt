@@ -77,7 +77,7 @@ fun SettingsScreen(viewModel: HubitViewModel) {
                     onClick = { viewModel.startBackgroundOptimization() },
                     colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
                     shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier.dpadFocusable(onClick = { viewModel.startBackgroundOptimization() })
+                    modifier = Modifier.dpadFocusable(shape = RoundedCornerShape(12.dp))
                 ) {
                     Icon(Icons.Default.Speed, contentDescription = null, tint = Color.White)
                     Spacer(modifier = Modifier.width(6.dp))

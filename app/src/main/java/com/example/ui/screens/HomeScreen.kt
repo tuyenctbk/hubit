@@ -215,7 +215,7 @@ fun HomeScreen(
                                 colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
                                 modifier = Modifier
                                     .testTag("home_open_qr_button")
-                                    .dpadFocusable(onClick = { onNavigateTab(1) })
+                                    .dpadFocusable()
                             ) {
                                 Icon(Icons.Default.QrCode, contentDescription = "QR Code Icon", tint = Color.Black)
                                 Spacer(modifier = Modifier.width(6.dp))
@@ -515,7 +515,7 @@ fun RecentItemContextCard(
                     Button(
                         onClick = { onInstallApk(item.pathOrUrl) },
                         colors = ButtonDefaults.buttonColors(containerColor = EmeraldTertiary),
-                        modifier = Modifier.dpadFocusable(onClick = { onInstallApk(item.pathOrUrl) })
+                        modifier = Modifier.dpadFocusable()
                     ) {
                         Icon(Icons.Default.Android, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -526,7 +526,7 @@ fun RecentItemContextCard(
                     Button(
                         onClick = { onPlayVideo(item.title, item.pathOrUrl) },
                         colors = ButtonDefaults.buttonColors(containerColor = AccentOrange),
-                        modifier = Modifier.dpadFocusable(onClick = { onPlayVideo(item.title, item.pathOrUrl) })
+                        modifier = Modifier.dpadFocusable()
                     ) {
                         Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -537,7 +537,7 @@ fun RecentItemContextCard(
                     Button(
                         onClick = { onDownloadLink(item.pathOrUrl) },
                         colors = ButtonDefaults.buttonColors(containerColor = CyanPrimary),
-                        modifier = Modifier.dpadFocusable(onClick = { onDownloadLink(item.pathOrUrl) })
+                        modifier = Modifier.dpadFocusable()
                     ) {
                         Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
@@ -547,7 +547,7 @@ fun RecentItemContextCard(
                 else -> {
                     OutlinedButton(
                         onClick = { },
-                        modifier = Modifier.dpadFocusable(onClick = { })
+                        modifier = Modifier.dpadFocusable()
                     ) {
                         Text(stringResource(R.string.fetcher_action_open), color = TextPrimary)
                     }
